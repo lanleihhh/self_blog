@@ -78,6 +78,7 @@
       - [正则表达式](ohter/正则表达式.md)
       - [windows安装多个版本jdk如何切换？](ohter/windows安装多个版本jdk如何切换？.md)
       - [IDEA中 springboot项目的pom.xml 的 插件安装报错](ohter/IDEA中%20springboot项目的pom.xml%20的%20插件安装报错.md)
+      - [同步更新项目到Gitee和GitHub](ohter/同步更新项目到Gitee和GitHub.md)
     * JavaSE
       - [面向对象](JavaSE/JavaSE复习一：认识Java、面向对象.md)
       - [常用关键字](JavaSE/JavaSE复习二：常用关键字：static、final、this、super、instanceof、volatile、synchronized、default、transient.md)

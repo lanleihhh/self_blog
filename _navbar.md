@@ -61,7 +61,7 @@
   - [JVM概述](JVM/JVM学习笔记%20一：JVM概述.md)
   - [类加载机制、运行时数据区](JVM/JVM学习笔记：二：类加载、运行时数据区.md)
   - [本地方法接口、执行引擎](JVM/JVM学习笔记：三%20本地方法接口、执行引擎.md)
-  - [垃圾回收机制](JVM/JVM学习笔记 四：垃圾回收机制.md)
+  - [垃圾回收机制](JVM/垃圾回收机制.md)
   - [关于 Object obj = new Object()](JVM/关于%20Object%20obj%20=%20new%20Object().md)
   - [关于对象创建的几个问题](JVM/关于对象创建的几个问题.md)
 * Redis

@@ -1,14 +1,13 @@
 <!-- _navbar.md -->
 * 我的博客
     * MySQL
-        - [MySQL概述及语法](MySQL/数据库.md)
-        - [视图、存储过程、函数、触发器](MySQL/mysql1.md)
-        - [架构、引擎、索引](MySQL/mysql2.md)
-        - [事务、MVCC](MySQL/mysql3.md)
-        - [锁机制、SQL优化](MySQL/mysql4.md)
-        - [MySQL面试题](MySQL/MySQL面试题.md)
-        - [数据库连接池的简单实现](MySQL/数据库连接池的简单实现.md)
-      
+      - [MySQL概述及语法](MySQL/数据库.md)
+      - [视图、存储过程、函数、触发器](MySQL/mysql1.md)
+      - [架构、引擎、索引](MySQL/mysql2.md)
+      - [事务、MVCC](MySQL/mysql3.md)
+      - [锁机制、SQL优化](MySQL/mysql4.md)
+      - [MySQL面试题](MySQL/MySQL面试题.md)
+      - [数据库连接池的简单实现](MySQL/数据库连接池的简单实现.md)
     * Spring
       - [Spring：hello world](Spring/Java框架--spring(一、hello%20world).md)
       - [Spring：IOC、Bean管理](Spring/Java框架--spring(二、IOC，springBean管理,springJDBC).md)
@@ -27,12 +26,11 @@
       - [概述、搭建](Mybatis/概述、搭建.md)
       - [动态SQL](Mybatis/动态SQL.md)
       - [转义符、缓存、typeHandlers](Mybatis/转义符、缓存、typeHandlers.md)
-
     * JVM
       - [JVM概述](JVM/JVM学习笔记%20一：JVM概述.md)
       - [类加载机制、运行时数据区](JVM/JVM学习笔记：二：类加载、运行时数据区.md)
       - [本地方法接口、执行引擎](JVM/JVM学习笔记：三%20本地方法接口、执行引擎.md)
-      - [垃圾回收机制](JVM/JVM学习笔记 四：垃圾回收机制.md)
+      - [垃圾回收机制](JVM/垃圾回收机制.md)
       - [关于 Object obj = new Object()](JVM/关于%20Object%20obj%20=%20new%20Object().md)
       - [关于对象创建的几个问题](JVM/关于对象创建的几个问题.md)
     * Redis

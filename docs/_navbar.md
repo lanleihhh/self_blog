@@ -52,7 +52,7 @@
   - [SpringMVC前端同名name与后端接收](Spring/springMVC中前端同名name与后端接收.md)
   - [关于SpringMVC中前端请求路径多了一级目录的解决办法](Spring/关于SpringMVC中前端请求路径多了一级目录的解决办法.md)
   - [SpringBoot集成Redis缓存邮件验证码](Redis/SpringBoot集成Redis缓存邮箱验证码.md)
-  - [springboot项目配置一个存放图片的服务器(tomcat)](Spring/springboot项目配置一个存放图片的服务器(tomcat).md)
+  - [springboot项目配置一个存放图片的服务器tomcat](../Spring/springboot项目配置一个存放图片的服务器tomcat.md)
 * Mybatis
   - [概述、搭建](Mybatis/概述、搭建.md)
   - [动态SQL](Mybatis/动态SQL.md)

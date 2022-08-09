@@ -1,7 +1,7 @@
 <!-- _navbar.md -->
 * 我的博客
     * MySQL
-      - [MySQL概述及语法](MySQL)
+      - [MySQL概述及语法](../MySQL/数据库.md)
       - [视图、存储过程、函数、触发器](MySQL/mysql1.md)
       - [架构、引擎、索引](MySQL/mysql2.md)
       - [事务、MVCC](MySQL/mysql3.md)

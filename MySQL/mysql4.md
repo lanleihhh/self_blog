@@ -59,7 +59,7 @@ MyISAM支持表锁，InnoDB支持表锁、行锁
 
 
 
-```mysql
+
    -- 给test表加写锁---------独占锁
    LOCK TABLE test WRITE;
 
@@ -68,8 +68,7 @@ MyISAM支持表锁，InnoDB支持表锁、行锁
 
    -- 释放锁
    UNLOCK TABLE
-```
-
+   
 
 
 ### 在执行select查询的时候加锁
@@ -88,9 +87,13 @@ MyISAM支持表锁，InnoDB支持表锁、行锁
 可以查询
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/0b3bf12182a147b6904854f94c7721b2.png)
+
 不能修改
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5680d8c6a108422dadbd04bfec46bfea.png)
+
 其他事务不能再加锁
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/f616d30900724563990bfe7d2b0ed1d2.png)
 
 #### lock in share mode 共享锁

@@ -90,32 +90,31 @@ UNLOCK TABLE
 2. **避免索引失效**，索引失效会使用整张表进行扫描
  	1. 对where后条件进行<font color='blue'>null值判断</font>，为null索引会失效
  	
- 	 2. 避免使用 <font color='blue'>  != , <, > </font>  这些操作符
+ 	2. 避免使用 <font color='blue'>  != , <, > </font>  这些操作符
  	
  	3. 避免在where后使用	<font color='blue'>or</font> 作为连接条件
- 	
- 	
- 	4. 避免使用  <font color='blue'>IN , NOT IN</font>。对于简单的数据可以用between来代替
- 	
- 	5. 避免使用 <font color='blue'>LIKE</font>，可以使用<font color='blue'>全文索引</font>来实现模糊查询
- 	
- 	6. 避免在where后对字段进行<font color='blue'>表达式操作</font>
- 	
- 	7. 避免在where后对字段<font color='blue'>使用函数</font>
+
+    4. 避免使用  <font color='blue'>IN , NOT IN</font>。对于简单的数据可以用between来代替
+
+    5. 避免使用 <font color='blue'>LIKE</font>，可以使用<font color='blue'>全文索引</font>来实现模糊查询
+
+    1. 避免在where后对字段进行<font color='blue'>表达式操作</font>
+
+    2. 避免在where后对字段<font color='blue'>使用函数</font>
 
 
   3. 建立适当的索引，索引虽然加快了select的效率，但降低了insert和update的效率(这两操作会重建索引)
   4. 尽量使用数值型字段，(查询时：字符会一个一个比较，数值比较一次就好了)
-  	比如一些状态，可以使用0,1表示，在java中来对状态进行处理
+      比如一些状态，可以使用0,1表示，在java中来对状态进行处理
 
-3. 使用varchar代替char，varchar省空间，用多少，分配多少，char定长直接分配固定空间，可能浪费
+  5. 使用varchar代替char，varchar省空间，用多少，分配多少，char定长直接分配固定空间，可能浪费
 
-4. 不使用`select * from table`，需要什么返回什么：`select name,age from student`
-5. 避免返回大量数据
-6. 避免字段为NULL
- 	`空值''`不占空间，NULL占空间
- 	设置了可以为NULL的列column,查询中有column，索引失效
- 	count()统计的数据如果是column，NULL值会被忽略，但是空值`''`可以统计到
+  6. 不使用`select * from table`，需要什么返回什么：`select name,age from student`
+  7. 避免返回大量数据
+  8. 避免字段为NULL
+       `空值''`不占空间，NULL占空间
+       设置了可以为NULL的列column,查询中有column，索引失效
+       count()统计的数据如果是column，NULL值会被忽略，但是空值`''`可以统计到
 
 ## EXPLAIN 执行计划
 

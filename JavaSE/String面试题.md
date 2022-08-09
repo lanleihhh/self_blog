@@ -1,12 +1,14 @@
-﻿# 1.String  不能改变的原因是什么？
+﻿
+## 1.String不能改变的原因是什么？
+
 String底层是一个final修饰的char数组，private修饰的属性不能被外界访问，我们无法改变它，也无法影响String的值
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/44f4bf60186f44cb9832cd381544cf59.png)
 初始化的String的地址不能改变，但是地址中的内容可以改变
-<font color='red'>这个final修饰的char[] value 不是不可变，数组是引用类型，fianl修饰的引用类型不能指向其他引用，但是本身是可以修改的<font>
+<font color='red'>这个final修饰的char[] value 不是不可变，数组是引用类型，fianl修饰的引用类型不能指向其他引用，但是本身是可以修改的
 
-因此只要可以访问到String的value数组，就能达到修改String的目的
-# 2.String 可以改变的方式有哪些？
+因此只要可以访问到String的value数组，就能达到修改String的目的</font>
+# 2.String可以改变的方式有哪些？
 ## 2.1 通过反射修改
 ### 代码演示
 

@@ -60,14 +60,14 @@ MyISAM支持表锁，InnoDB支持表锁、行锁
 
 
 ```mysql
--- 给test表加写锁---------独占锁
-LOCK TABLE test WRITE;
+   -- 给test表加写锁---------独占锁
+   LOCK TABLE test WRITE;
 
--- 给test表加读锁---------共享锁
-LOCK TABLE test READ;
+   -- 给test表加读锁---------共享锁
+   LOCK TABLE test READ;
 
--- 释放锁
-UNLOCK TABLE
+   -- 释放锁
+   UNLOCK TABLE
 ```
 
 

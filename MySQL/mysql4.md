@@ -54,9 +54,12 @@ LOCK TABLE test READ;
 -- 释放锁
 UNLOCK TABLE
 ```
+
 ### 在执行select查询的时候加锁
 ==InnoDB中select默认不加锁==
+
 #### for update 排它锁
+
 <font color='red'>
 1. 在一个select查询语句后加上 for update：变成独占锁<br>
 2. 其他事务在此期间都不能读取修改该记录，知道记录释放锁<br>
@@ -66,9 +69,13 @@ UNLOCK TABLE
 可以查询
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/0b3bf12182a147b6904854f94c7721b2.png)
+
 不能修改
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5680d8c6a108422dadbd04bfec46bfea.png)
+
 其他事务不能再加锁
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/f616d30900724563990bfe7d2b0ed1d2.png)
 
 #### lock in share mode 共享锁
@@ -81,18 +88,20 @@ UNLOCK TABLE
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/26df52c47e764a46bbef608781ea2068.png)
 
 `[共享锁] 和 [排他锁] 均阻塞不了 【快照读】`
-
 # SQL优化
+
 ## 优化的建议
+
 查询是真实项目中频率最高的，查询效率不高，并发量大时，影响整体的性能
 1. **避免整张表扫描**
-	 对作为where条件的列 或 order by 排序的列<font color='blue'>建立索引</font>
+     对作为where条件的列 或 order by 排序的列<font color='blue'>建立索引</font>
+
 2. **避免索引失效**，索引失效会使用整张表进行扫描
- 	1. 对where后条件进行<font color='blue'>null值判断</font>，为null索引会失效
+     1. 对where后条件进行<font color='blue'>null值判断</font>，为null索引会失效
  	
- 	2. 避免使用 <font color='blue'>  != , <, > </font>  这些操作符
+     2. 避免使用 <font color='blue'>  != , <, > </font>  这些操作符
  	
- 	3. 避免在where后使用	<font color='blue'>or</font> 作为连接条件
+     3. 避免在where后使用	<font color='blue'>or</font> 作为连接条件
 
     4. 避免使用  <font color='blue'>IN , NOT IN</font>。对于简单的数据可以用between来代替
 
@@ -120,7 +129,10 @@ UNLOCK TABLE
 
 在一条查询SQL语句之前添加 explain，会返回执行计划的信息（不会执行这条语句）
 `insert、update、delete之前也可以使用explain来打印信息，但一般并不关注`
+
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d2bfcdefb1fc465eb5236f2a8b61ec10.png)
+
 EXPLAIN可以打印一条SQL的信息
 - 表的读取顺序
 - SQL查询语句的类型
@@ -129,6 +141,7 @@ EXPLAIN可以打印一条SQL的信息
 - 一个表中有多少行被优化器查询 .....
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5c23da7abd7544f1933556129d4ecae6.png)
+
 ### 1.id
 
 SELECT识别符。这是SELECT的查询序列号
@@ -142,15 +155,15 @@ SQL执行的顺序的标识，SQL从大到小的执行
 3. id如果相同，可以认为是一组，从上往下顺序执行；在所有组中，id值越大，优先级越高，越先执行
 
 ### 2.select_type
->(1) SIMPLE(简单SELECT，不使用UNION或子查询等)
-(2) PRIMARY(子查询中最外层查询，查询中若包含任何复杂的子部分，最外层的select被标记为PRIMARY)
-(3) UNION(UNION中的第二个或后面的SELECT语句)
-(4) DEPENDENT UNION(UNION中的第二个或后面的SELECT语句，取决于外面的查询)
-(5) UNION RESULT(UNION的结果，union语句中第二个select开始后面所有select)
-(6) SUBQUERY(子查询中的第一个SELECT，结果不依赖于外部查询)
-(7) DEPENDENT SUBQUERY(子查询中的第一个SELECT，依赖于外部查询)
-(8) DERIVED(派生表的SELECT, FROM子句的子查询)
-(9) UNCACHEABLE SUBQUERY(一个子查询的结果不能被缓存，必须重新评估外链接的第一行)
+>1. SIMPLE(简单SELECT，不使用UNION或子查询等)
+>2. PRIMARY(子查询中最外层查询，查询中若包含任何复杂的子部分，最外层的select被标记为PRIMARY) 
+>3. UNION(UNION中的第二个或后面的SELECT语句)
+>4. DEPENDENT UNION(UNION中的第二个或后面的SELECT语句，取决于外面的查询)
+>5. UNION RESULT(UNION的结果，union语句中第二个select开始后面所有select)
+>6. SUBQUERY(子查询中的第一个SELECT，结果不依赖于外部查询)
+>7. DEPENDENT SUBQUERY(子查询中的第一个SELECT，依赖于外部查询)
+>8. DERIVED(派生表的SELECT, FROM子句的子查询)
+>9. UNCACHEABLE SUBQUERY(一个子查询的结果不能被缓存，必须重新评估外链接的第一行)
 
 
 
@@ -161,13 +174,13 @@ SQL执行的顺序的标识，SQL从大到小的执行
 对表访问方式，表示MySQL在表中找到所需行的方式，又称“访问类型”。
 
 常用的类型有： ALL、index、range、 ref、eq_ref、const、system、NULL（从左到右，性能从差到好）
->**ALL**：Full Table Scan， MySQL将遍历全表以找到匹配的行
-**index**: Full Index Scan，index与ALL区别为index类型只遍历索引树
-**range**:只检索给定范围的行，使用一个索引来选择行
-**ref**: 表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值
-**eq_ref**: 类似ref，区别就在使用的索引是唯一索引，对于每个索引键值，表中只有一条记录匹配，简单来说，就是多表连接中使用primary key或者 unique key作为关联条件
-**const**、**system**: 当MySQL对查询某部分进行优化，并转换为一个常量时，使用这些类型访问。如将主键置于where列表中，MySQL就能将该查询转换为一个常量，system是const类型的特例，当查询的表只有一行的情况下，使用system
-**NULL**: MySQL在优化过程中分解语句，执行时甚至不用访问表或索引，例如从一个索引列里选取最小值可以通过单独索引查找完成。
+>- **ALL**：Full Table Scan， MySQL将遍历全表以找到匹配的行
+>- **index**: Full Index Scan，index与ALL区别为index类型只遍历索引树
+>- **range**:只检索给定范围的行，使用一个索引来选择行
+>- **ref**: 表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值
+>- **eq_ref**: 类似ref，区别就在使用的索引是唯一索引，对于每个索引键值，表中只有一条记录匹配，简单来说，就是多表连接中使用primary key或者 unique key作为关联条件
+>- **const**、**system**: 当MySQL对查询某部分进行优化，并转换为一个常量时，使用这些类型访问。如将主键置于where列表中，MySQL就能将该查询转换为一个常量，system是const类型的特例，当查询的表只有一行的情况下，使用system
+>- **NULL**: MySQL在优化过程中分解语句，执行时甚至不用访问表或索引，例如从一个索引列里选取最小值可以通过单独索引查找完成。
 
 
 

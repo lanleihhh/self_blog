@@ -22,7 +22,7 @@
       - [Spring密码加密](Spring/spring--密码加密.md)
       - [SpringMVC前端同名name与后端接收](Spring/springMVC中前端同名name与后端接收.md)
       - [关于SpringMVC中前端请求路径多了一级目录的解决办法](Spring/关于SpringMVC中前端请求路径多了一级目录的解决办法.md)
-      - [springboot项目配置一个存放图片的服务器(tomcat)](../Spring/springboot项目配置一个存放图片的服务器tomcat.md)
+      - [springboot项目配置一个存放图片的服务器(tomcat)](Spring/springboot项目配置一个存放图片的服务器tomcat.md)
     * Mybatis
       - [概述、搭建](Mybatis/概述、搭建.md)
       - [动态SQL](Mybatis/动态SQL.md)
@@ -79,7 +79,7 @@
       - [正则表达式](ohter/正则表达式.md)
       - [windows安装多个版本jdk如何切换？](ohter/windows安装多个版本jdk如何切换？.md)
       - [IDEA中 springboot项目的pom.xml 的 插件安装报错](ohter/IDEA中%20springboot项目的pom.xml%20的%20插件安装报错.md)
-      - [同步更新项目到Gitee和GitHub](../ohter/同步更新项目到Gitee和GitHub.md)
+      - [同步更新项目到Gitee和GitHub](ohter/同步更新项目到Gitee和GitHub.md)
     * JavaSE
       - [面向对象](JavaSE/JavaSE复习一：认识Java、面向对象.md)
       - [常用关键字](JavaSE/JavaSE复习二：常用关键字：static、final、this、super、instanceof、volatile、synchronized、default、transient.md)

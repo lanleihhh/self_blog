@@ -95,11 +95,11 @@
 
 
 
-![image-20220811165149030](E:\lanlei\笔记\self_blog\docs\img\image-20220811165149030.png)
+![image-20220811165149030](..\img\image-20220811165149030.png)
 
 ##### 一级缓存的产生：SqlSession的一系列select方法，其他方法不会产生缓存
 
-![image-20220811155023626](E:\lanlei\笔记\self_blog\docs\img\image-20220811155023626.png)
+![image-20220811155023626](..\img\image-20220811155023626.png)
 
 
 
@@ -139,8 +139,8 @@
 2. 增删改清空一级缓存
 
 ```java
-	@Test
-	//增删改会清空当前SQLSession对象中的缓存(防止数据脏读)
+    @Test
+    //增删改会清空当前SQLSession对象中的缓存(防止数据脏读)
     public void find8(){
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
@@ -169,23 +169,23 @@
 
 1. **close()关闭SqlSession (BaseExcutor)**
 
-   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811170004080.png" alt="image-20220811170004080" style="zoom: 50%;" />
+   <img src="..\img\image-20220811170004080.png" alt="image-20220811170004080" style="zoom: 50%;" />
 
 2. commit 提交(BaseExcutor)
 
-   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811170136690.png" alt="image-20220811170136690" style="zoom:50%;" />
+   <img src="..\img\image-20220811170136690.png" alt="image-20220811170136690" style="zoom:50%;" />
 
 3. **update方法调用了clearLocalCache()，insert和delete调用了update方法，增删改都是可以清空缓存的**
 
-​			<img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811174259106.png" alt="image-20220811174259106" style="zoom:80%;" />
+​			<img src="..\img\image-20220811174259106.png" alt="image-20220811174259106" style="zoom:80%;" />
 
-​			![image-20220811174212695](E:\lanlei\笔记\self_blog\docs\img\image-20220811174212695.png)
+​			![image-20220811174212695](..\img\image-20220811174212695.png)
 
-​			![image-20220811174134157](E:\lanlei\笔记\self_blog\docs\img\image-20220811174134157.png)
+​			![image-20220811174134157](..\img\image-20220811174134157.png)
 
 4. **clearLocalCache()**
 
-   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811174502343.png" alt="image-20220811174502343" style="zoom: 67%;" />
+   <img src="..\img\image-20220811174502343.png" alt="image-20220811174502343" style="zoom: 67%;" />
 
 
 
@@ -207,7 +207,7 @@ MyBatis如何判断两次查询是完全相同的？
 
    只要传递给sql的参数相同，不是同一个参数对象，也是可以命中缓存的，如下图
 
-   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811142402924.png" alt="image-20220811142402924" style="zoom: 33%;" />
+   <img src="..\img\image-20220811142402924.png" alt="image-20220811142402924" style="zoom: 33%;" />
 
 3.  **分页参数必须相同**，否则无法命中缓存，缓存的粒度是整个分页查询结果，不是结果中的每个对象
 
@@ -215,11 +215,11 @@ MyBatis如何判断两次查询是完全相同的？
 
 5. **要求执行环境相同**
 
-   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811143944795.png" alt="image-20220811143944795" style="zoom:50%;" />
+   <img src="..\img\image-20220811143944795.png" alt="image-20220811143944795" style="zoom:50%;" />
 
 命中原则的源码:BaseExcutor中的createCacheKey方法
 
-<img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811165530873.png" alt="image-20220811165530873" style="zoom:67%;" />
+<img src="..\img\image-20220811165530873.png" alt="image-20220811165530873" style="zoom:67%;" />
 
 注意：
 

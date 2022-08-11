@@ -11,13 +11,15 @@
 
 ### 一级缓存
 
+#### 认识一级缓存
+
 **Mybatis 默认开启一级缓存 .**
 
 - 一级缓存的作用域是同一个 **SqlSession**， 在同一个 **sqlSession** 中两次执行相同的 sql 语句，第一次执行完毕会将数据库 中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。
 
 - 第一次将查询结果写入缓存，在第二次查询之前，发生了增删改等写操作，那么SQLSession中的缓存会被清空，每次查询会先去缓存中找，找不到再去数据库查询，再将结果写入缓存。
 
-- 当一个 **sqlSession** 结束后该 **sqlSession** 中的一级缓存也就不存在了。
+- 当一个 **sqlSession** 结束后该 **sqlSession** 中的一级缓存也就不存在了。 
 - MyBatis内部缓存使用一个HashMap，key为`hashcode+statementId+sq`l语句，value为结果集映射的java对象。
 - SQLSession执行insert、update、delete等操作，commit后会清空SQLSession缓存
 
@@ -63,7 +65,7 @@
     }
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/9109e96b5e6e421eaaa8a342b043c4ec.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+<img src="https://img-blog.csdnimg.cn/9109e96b5e6e421eaaa8a342b043c4ec.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述" style="zoom:50%;" />
 
 
 一个对象执行两次不同的查询
@@ -83,21 +85,35 @@
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/9effc3a9b1ce407a8747cdefdf2747b2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
-#### 生命周期
+#### 一级缓存的生命周期
+
+##### 概述
 
 1. MyBatis 在**开启**一个数据库会话时，会创建一个新的 **SqlSession** 对象， **SqlSession** 对象中会有一个新的 **Executor** 对象。**Executor** 对象中持有一个新的 **PerpetualCache** 对象,如果 **SqlSession** 调用了 **close**()方法，会释放掉一级 缓存 **PerpetualCache** 对象，一级缓存将不可用。 
 2. 如果 **SqlSession** 调用了 **clearCache**()，会清空 **PerpetualCache** 对象 中的数据，但是该对象仍可使用。 
 3. **SqlSession** 中执行了任何一个 **update** 操作(**update**()、**delete**()、 **insert**()) ，都会清空 **PerpetualCache** 对象的数据，但是该对象可以继续使用 
 
-清空一级缓存
 
-- **close**()关闭会话,清空一级缓存
 
-- **clearCache**()清空一级缓存
+![image-20220811165149030](E:\lanlei\笔记\self_blog\docs\img\image-20220811165149030.png)
 
-- **增删改**清空一级缓存
+##### 一级缓存的产生：SqlSession的一系列select方法，其他方法不会产生缓存
 
-clearCache()清空一级缓存
+![image-20220811155023626](E:\lanlei\笔记\self_blog\docs\img\image-20220811155023626.png)
+
+
+
+##### 清空一级缓存
+
+- 执行`sqlSession.close()`方法关闭Session会话,会清空一级缓存
+
+- 执行`sqlSession.commit()`提交or`sqlSession.rollback()`回滚后会清空一级缓存
+
+- **sqlSession.clearCache()**主动清空一级缓存
+
+- **insert、delete、update**等操作会清空一级缓存
+
+1. clearCache()清空一级缓存
 
 ```java
 	@Test
@@ -120,8 +136,7 @@ clearCache()清空一级缓存
 
 
 
-
-增删改清空一级缓存
+2. 增删改清空一级缓存
 
 ```java
 	@Test
@@ -146,10 +161,73 @@ clearCache()清空一级缓存
     }
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/32c28d126ff645cfa18e21299eb9fb57.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+<img src="https://img-blog.csdnimg.cn/32c28d126ff645cfa18e21299eb9fb57.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述" style="zoom: 50%;" />
 
 
 
+清空缓存的源码：
+
+1. **close()关闭SqlSession (BaseExcutor)**
+
+   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811170004080.png" alt="image-20220811170004080" style="zoom: 50%;" />
+
+2. commit 提交(BaseExcutor)
+
+   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811170136690.png" alt="image-20220811170136690" style="zoom:50%;" />
+
+3. **update方法调用了clearLocalCache()，insert和delete调用了update方法，增删改都是可以清空缓存的**
+
+​			<img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811174259106.png" alt="image-20220811174259106" style="zoom:80%;" />
+
+​			![image-20220811174212695](E:\lanlei\笔记\self_blog\docs\img\image-20220811174212695.png)
+
+​			![image-20220811174134157](E:\lanlei\笔记\self_blog\docs\img\image-20220811174134157.png)
+
+4. **clearLocalCache()**
+
+   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811174502343.png" alt="image-20220811174502343" style="zoom: 67%;" />
+
+
+
+##### 关闭一级缓存
+
+配置flushCache为true
+
+`<select  flushCache="true">`
+
+
+
+#### 一级缓存的命中原则
+
+MyBatis如何判断两次查询是完全相同的？
+
+1. **两次查询的StatementId相同**，也就是dao层的方法名，映射文件中的select语句中的id必须相同<select id="">，否则就算SQL语句、参数完全一样也不行
+
+2.  **传递给查询SQL的参数必须相同**，否则无法命中缓存
+
+   只要传递给sql的参数相同，不是同一个参数对象，也是可以命中缓存的，如下图
+
+   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811142402924.png" alt="image-20220811142402924" style="zoom: 33%;" />
+
+3.  **分页参数必须相同**，否则无法命中缓存，缓存的粒度是整个分页查询结果，不是结果中的每个对象
+
+4. **要求传递给JDBC的SQL语句是完全相同的**
+
+5. **要求执行环境相同**
+
+   <img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811143944795.png" alt="image-20220811143944795" style="zoom:50%;" />
+
+命中原则的源码:BaseExcutor中的createCacheKey方法
+
+<img src="E:\lanlei\笔记\self_blog\docs\img\image-20220811165530873.png" alt="image-20220811165530873" style="zoom:67%;" />
+
+注意：
+
+**Spring集成MyBatis后**
+
+- **不开启事务，每次请求都会关闭上一个SqlSession，开启新的SqlSession，所以不开启事务，一级缓存是无效的**
+
+- **开启事务后，Spring通过ThreadLocal始终使用的是同一个SqlSession，一级缓存有效**
 
 
 
@@ -168,14 +246,22 @@ clearCache()清空一级缓存
    mybatis默认不开启二级缓存
 
    ```xml
-   <setting name="cacheEnabled" value="true"/>
+   <settings>
+   	<setting name="cacheEnabled" value="true"/>
+   </settings>
    ```
 
 2. **POJO序列化**(所有)
 
-   所有POJO类(自定一类)实现序列化接口( Java.io. Serializable )
+   所有POJO类(自定义类)实现序列化接口( Java.io. Serializable )
 
 3. **配置映射文件**(`<cache/>`)
+
+   ```xml
+   <mapper namespace="com.demo.mybatispro.mapper.AdminMapper">
+   	<cache/>
+   </mapper>
+   ```
 
    在 Mapper 映射文件中添加`<cache/>`，表示此 mapper 开启二级缓存
 

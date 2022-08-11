@@ -149,7 +149,7 @@ Buffer Pool、LogBuffer、redo log、undo log
 
 
 
-## MySQL集群 与 读写分离
+## MySQL的主从同步
 
 MySQL通过将主节点的binlog同步到从结点完成主从同步
 
@@ -161,14 +161,41 @@ MySQL通过将主节点的binlog同步到从结点完成主从同步
 
 
 
-主从复制的基本原理：
+主从同步是怎么做的？
 
-主服务器将binlog写入本地，从数据库定时请求增量binlog，主节点将binlog同步到从节点
-
-从节点单独的线程将binlog复制到从节点的relaylog中
-
-从节点定时重放relaylog
+- Master(主节点)发生变化后，记录到Binary log中
+- Slave(从节点)启动一个单独的IO线程连接Master，请求Master变化的二进制日志
+- Slave IO线程将获取到的二进制日志保存到字节的Relay log日志中
+- Slave有一个SQL 线程定时检查Relay log是否变化，发生变化了就更新数据
 
 
 
 读写分离是在MySQL主从集群的基础上，由具体的业务来实现的
+
+
+
+## int(1)与int(10)有区别吗？
+
+### 不使用zerofill，int(1)与int(10没有区别)，括号内宽度无论定义多少，都是存储10位数
+
+- **无符号unsigned 的int类型为2^32-1=4294967295（40亿+）**
+
+  <img src="..\img\image-20220811113216012.png" alt="image-20220811113216012" style="zoom:50%;" />
+
+- **signed 的 int 为2^31−1=2147483647(21亿+)**
+
+  <img src="..\img\image-20220811112428237.png" alt="image-20220811112428237" style="zoom:50%;" />
+
+### 使用zerofill，插入数据 没有达到定义的宽度，会进行补0
+
+<img src="..\img\image-20220811113935996.png" alt="image-20220811113935996" style="zoom:50%;" />
+
+
+
+int后面的数字不表示字段的长度，int(n)一般加上zerofill，才有自动补0指定宽度的效果。
+
+**zerofill的应用场景：插入等长的自增数字编号时，例如：001,002,...999**
+
+
+
+## 

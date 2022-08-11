@@ -53,10 +53,11 @@
   - [关于SpringMVC中前端请求路径多了一级目录的解决办法](Spring/关于SpringMVC中前端请求路径多了一级目录的解决办法.md)
   - [SpringBoot集成Redis缓存邮件验证码](Redis/SpringBoot集成Redis缓存邮箱验证码.md)
   - [springboot项目配置一个存放图片的服务器tomcat](Spring/springboot项目配置一个存放图片的服务器tomcat.md)
-* Mybatis
+* MyBatis
   - [概述、搭建](Mybatis/概述、搭建.md)
   - [动态SQL](Mybatis/动态SQL.md)
-  - [转义符、缓存、typeHandlers](Mybatis/转义符、缓存、typeHandlers.md)
+  - [转义符、typeHandlers](Mybatis/转义符、typeHandlers.md)
+  - [MyBatis缓存](Mybatis/MyBatis缓存.md)
 * JVM
   - [JVM概述](JVM/JVM学习笔记%20一：JVM概述.md)
   - [类加载机制、运行时数据区](JVM/JVM学习笔记：二：类加载、运行时数据区.md)

@@ -1,45 +1,3 @@
-## 转义符
-
-在 mybatis 中的 xml 文件中，存在一些特殊的符号，比如：<、>、"、'&、<> 等，正常书写 mybatis 会报错，需要对这些符号进行转义。具体转义如下所示： 特殊字符 转义字 
-
-- `<`           `        &lt;`
-- `>`           `&gt;`
-
-- `"`           `&quot;`
-- `'`           `&apos;`
-- `&`           `&amp;`
-
-```xml
-	<!--查询年龄小于指定参数的员工-->
-	<select id="findEmployeeByAge2" resultType="Employee">
-        select * from employee where age &lt; #{age}
-    </select>
-```
-
-```java
-	@Test//找年龄<21的
-    public void find6(){
-        SqlSession sqlSession = MybatisUtil.getSqlSession();
-        EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
-        mapper.findEmployeeByAge2(21);
-        sqlSession.commit();
-        sqlSession.close();
-    }
-```
-
-![在这里插入图片描述](https://img-blog.csdnimg.cn/bd9d5e4c85634d0081a4ab2dac4e9069.png#pic_center)
-
-
-除了可以使用上述转义字符外，还可以使用`<![CDATA[ ]]>`包裹特殊字符 . `<![CDATA[ ]]>`是 XML 语法。在 CDATA 内部的所有内容都会被解析器忽略。  
-
-```xml
- 	<select id="findEmployeeByAge2" resultType="Employee">
-        select * from employee where age  <![CDATA[ < ]]> #{age}
-    </select>
-```
-
-我们可以将需要转义才能被解析的字符放在`<![CDATA[ 特殊符号 ]]>`中
-
 ## mybatis缓存
 
 ### 为什么使用缓存?
@@ -53,14 +11,23 @@
 
 ### 一级缓存
 
-​		 Mybatis 有一级缓存和二级缓存。一级缓存的作用域是同一个 **SqlSession**， 在同一个 **sqlSession** 中两次执行相同的 sql 语句，第一次执行完毕会将数据库 中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。当一个 **sqlSession** 结束后该 **sqlSession** 中的一级缓存也就不存在了。Mybatis   默认开启一级缓存 .
+**Mybatis 默认开启一级缓存 .**
 
-​		我们使用上面的按年龄查询的方法测试mybatis的一级缓存
+- 一级缓存的作用域是同一个 **SqlSession**， 在同一个 **sqlSession** 中两次执行相同的 sql 语句，第一次执行完毕会将数据库 中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。
+
+- 第一次将查询结果写入缓存，在第二次查询之前，发生了增删改等写操作，那么SQLSession中的缓存会被清空，每次查询会先去缓存中找，找不到再去数据库查询，再将结果写入缓存。
+
+- 当一个 **sqlSession** 结束后该 **sqlSession** 中的一级缓存也就不存在了。
+- MyBatis内部缓存使用一个HashMap，key为`hashcode+statementId+sq`l语句，value为结果集映射的java对象。
+- SQLSession执行insert、update、delete等操作，commit后会清空SQLSession缓存
+
+我们使用上面的按年龄查询的方法测试mybatis的一级缓存
 
 两个对象执行相同的查询,查询次数为2,因为一级缓存在与同一个sqlSession对象中
 
 ```java
-	@Test//找年龄<21的
+	@Test
+	//找年龄<21的
     public void find6(){
     	//sqlSession对象1
         SqlSession sqlSession = MybatisUtil.getSqlSession();
@@ -84,7 +51,8 @@
 一个对象执行两次相同的查询,只查询了一次
 
 ```java
-	@Test//找年龄<21的
+	@Test
+	//找年龄<21的
     public void find6(){
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
@@ -101,7 +69,8 @@
 一个对象执行两次不同的查询
 
 ```java
-	@Test//找年龄<21的
+	@Test
+	//找年龄<21的
     public void find6(){
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
@@ -113,6 +82,7 @@
 ```
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/9effc3a9b1ce407a8747cdefdf2747b2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
 #### 生命周期
 
 1. MyBatis 在**开启**一个数据库会话时，会创建一个新的 **SqlSession** 对象， **SqlSession** 对象中会有一个新的 **Executor** 对象。**Executor** 对象中持有一个新的 **PerpetualCache** 对象,如果 **SqlSession** 调用了 **close**()方法，会释放掉一级 缓存 **PerpetualCache** 对象，一级缓存将不可用。 
@@ -154,7 +124,8 @@ clearCache()清空一级缓存
 增删改清空一级缓存
 
 ```java
-	@Test//增删改会清空当前SQLSession对象中的缓存(防止数据脏读)
+	@Test
+	//增删改会清空当前SQLSession对象中的缓存(防止数据脏读)
     public void find8(){
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
@@ -206,16 +177,16 @@ clearCache()清空一级缓存
 
 3. **配置映射文件**(`<cache/>`)
 
-    在 Mapper 映射文件中添加`<cache/>`，表示此 mapper 开启二级缓存
+   在 Mapper 映射文件中添加`<cache/>`，表示此 mapper 开启二级缓存
 
-    当 SqlSeesion 关闭时,会将数据存入到二级缓存 
+   当 SqlSeesion 关闭时,会将数据存入到二级缓存 
 
 当一个SqlSession对象**关闭**后(一次会话结束),数据存入二级缓存
 
 SqlSessionFactory中的其他SqlSession对象依旧可以使用二级缓存中的数据
 
 ```java
-@Test
+	@Test
     public void find9(){
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
@@ -238,55 +209,3 @@ SqlSessionFactory中的其他SqlSession对象依旧可以使用二级缓存中�
 ```
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c91f960180914fb582553806f90759c3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
-
-## 类型处理器（typeHandlers）  入参和查询结果 将java类型与数据库类型进行匹配转账
-- BooleanTypeHandler	java.lang.Boolean, boolean	数据库兼容的 BOOLEAN
-- ByteTypeHandler	java.lang.Byte, byte	数据库兼容的 NUMERIC 或 BYTE
-- ShortTypeHandler	java.lang.Short, short	数据库兼容的 NUMERIC 或 SMALLINT
-- IntegerTypeHandler	java.lang.Integer, int	数据库兼容的 NUMERIC 或 INTEGER
-- LongTypeHandler	java.lang.Long, long	数据库兼容的 NUMERIC 或 BIGINT
-- FloatTypeHandler	java.lang.Float, float	数据库兼容的 NUMERIC 或 FLOAT
-- DoubleTypeHandler	java.lang.Double, double	数据库兼容的 NUMERIC 或 DOUBLE
-- BigDecimalTypeHandler java.math.BigDecimal	数据库兼容的 NUMERIC 或 DECIMAL
-- StringTypeHandler	java.lang.String	数据库兼容的 CHAR, VARCHAR
-- ClobReaderTypeHandler	java.io.Reader	-
-- ClobTypeHandler	java.lang.String	 
-数据库兼容的  CLOB, LONGVARCHAR
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -355,7 +355,7 @@ clearCache()是清空一个SqlSession中查询数据,因此不能清空二级缓
 
 在同一个SqlSessionFactory中：
 
-1. **两次查询的StatementId相同**，也就是dao层的方法名，映射文件中的select语句中的id必须相同<select id="">，否则就算SQL语句、参数完全一样也不行
+1. **两次查询的StatementId相同**，也就是dao层的方法名，映射文件中的select语句中的id必须相同`<select id="">`，否则就算SQL语句、参数完全一样也不行
 
 2.  **传递给查询SQL的参数必须相同**，否则无法命中缓存
 

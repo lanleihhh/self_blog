@@ -180,15 +180,15 @@ MySQL通过将主节点的binlog同步到从结点完成主从同步
 
 - **无符号unsigned 的int类型为2^32-1=4294967295（40亿+）**
 
-  <img src="..\img\image-20220811113216012.png" alt="image-20220811113216012" style="zoom:50%;" />
+  <img src="../img/image-20220811113216012.png" alt="image-20220811113216012" style="zoom:50%;" />
 
 - **signed 的 int 为2^31−1=2147483647(21亿+)**
 
-  <img src="..\img\image-20220811112428237.png" alt="image-20220811112428237" style="zoom:50%;" />
+  <img src="../img/image-20220811112428237.png" alt="image-20220811112428237" style="zoom:50%;" />
 
 ### 使用zerofill，插入数据 没有达到定义的宽度，会进行补0
 
-<img src="..\img\image-20220811113935996.png" alt="image-20220811113935996" style="zoom:50%;" />
+<img src="../img/image-20220811113935996.png" alt="image-20220811113935996" style="zoom:50%;" />
 
 
 

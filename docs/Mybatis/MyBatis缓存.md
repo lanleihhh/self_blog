@@ -9,6 +9,12 @@
 - 一级缓存:**sqlSession级别**,在一次会话中保存数据,会话结束后缓存中的数据销毁
 - 二级缓存: **SqlSessionFactory**级别的 
 
+
+
+## MyBatis一级缓存与二级缓存比较
+
+![image-20220812190538710](../img/image-20220812190538710.png)
+
 ## 一级缓存
 
 ### 认识一级缓存
@@ -439,4 +445,24 @@ update 配置 flushCache="false"的话，执行更新操作后，缓存中的数
 
 
 
+
+## MyBatis 脏读问题 
+
+MyBatis脏读的原因是由于二级缓存，二级缓存是作用于一个namespace命名空间下的Mapper文件中的，不同的Mapper有自己独立的二级缓存
+
+多表关联时，AMapper查询table表的数据，写入缓存，BMapper此时执行SQL更新了table表，刷新了缓存，AMapper又查询了一次，这次查出的是脏数据
+
+
+
+如何解决脏读？
+
+1. 只需要在对应的Mapper文件中，将该Mapper的命名空间引用另外一个Mapper的命名空间就可以使两个Mapper共用一个缓存空间
+
+2. MyBatis管理缓存的插件: https://github.com/LuanLouis/mybatis-enhanced-cache
+
+3. MyBatis集成redis,解决二级缓存在多个SqlSessionFactory中的脏读
+
+4. 关闭一二级缓存，使用Redis作为缓存
+
+   
 

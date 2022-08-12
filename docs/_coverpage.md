@@ -2,7 +2,7 @@
 
 <img src="cover.jpg" alt="hello" style="zoom: 25%;" />
 
-# lanlei的笔记 <small>1.0</small>
+# Pompeii ~ blog <small>1.0</small>
 
 > 求其上者得其中
 

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6cb832ba-a7e8-4f79-b91d-ab2e5fb7cb4d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Mybatis/MyBatis缓存.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Mybatis/MyBatis缓存.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_coverpage.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_coverpage.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +78,8 @@
       <workItem from="1660215079487" duration="503000" />
       <workItem from="1660216311840" duration="43000" />
       <workItem from="1660216442487" duration="705000" />
-      <workItem from="1660279162537" duration="3836000" />
+      <workItem from="1660279162537" duration="4160000" />
+      <workItem from="1660301896004" duration="1400000" />
     </task>
     <task id="LOCAL-00001" summary="3.1">
       <created>1660016611613</created>
@@ -197,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660294888622</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary=".">
+      <created>1660295299372</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1660295299372</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

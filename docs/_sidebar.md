@@ -28,6 +28,7 @@
       - [动态SQL](Mybatis/动态SQL.md)
       - [转义符、typeHandlers](Mybatis/转义符、typeHandlers.md)
       - [MyBatis缓存](Mybatis/MyBatis缓存.md)
+      - [MyBatis面试题](Mybatis/面试题.md)
     * JVM
       - [JVM概述](JVM/JVM学习笔记%20一：JVM概述.md)
       - [类加载机制、运行时数据区](JVM/JVM学习笔记：二：类加载、运行时数据区.md)

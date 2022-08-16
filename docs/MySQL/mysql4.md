@@ -78,6 +78,10 @@ MyISAM支持表锁，InnoDB支持表锁、行锁
 
 #### for update 排它锁
 
+- **查询条件使用了索引/主键**，select ... for update 会进行**锁行**
+
+- **查询条件没有使用索引/主键**，select ... for update 会进行**锁表**
+
 <font color='red'>
 
 1. 在一个select查询语句后加上 for update：变成独占锁<br>

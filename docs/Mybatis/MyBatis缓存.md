@@ -25,8 +25,8 @@
 
 - 第一次将查询结果写入缓存，在第二次查询之前，发生了增删改等写操作，那么SQLSession中的缓存会被清空，每次查询会先去缓存中找，找不到再去数据库查询，再将结果写入缓存。
 
-- 当一个 **sqlSession** 结束后该 **sqlSession** 中的一级缓存也就不存在了。 
-- MyBatis内部缓存使用一个HashMap，key为`hashcode+statementId+sq`l语句，value为结果集映射的java对象。
+- 当一个 **sqlSession** `close` 或者` flush `后该 **sqlSession** 中的一级缓存也就不存在了。 
+- MyBatis一级缓存是基于 PerpetualCache 的 HashMap 本地缓存，key为`hashcode+statementId+sq`l语句，value为结果集映射的java对象。
 - SQLSession执行insert、update、delete等操作，commit后会清空SQLSession缓存
 
 我们使用上面的按年龄查询的方法测试mybatis的一级缓存
@@ -256,13 +256,10 @@ MyBatis如何判断两次查询是完全相同的？
 
 ### 概述
 
-​		二级缓存是**SqlSessionFactory**级别的(SqlSessionFactory只有一个),根据Mapper的`namespace` 划分区域的.
-
-​		多个SqlSession共享二级缓存
-
-​		相同 `namespace` 的 **mapper** 查询的数据缓存在同一个区域，如果使用 **mapper** 代理方法每个 **mapper** 的 `namespace` 都不同，此时可以理解为二级缓存区域是根据 **mapper** 划分。 
-
- 每次查询会**先从缓存区**域查找，如果找不到则从数据库查询，并将查询到数据写入缓存。Mybatis 内部存储缓存使用一个 **HashMap**，==key== 为 ==hashCode==+==sqlId==+==Sql== 语句。**value** 为从查询出来**映射生成**的 j**ava** 对象。 sqlSession 执行 insert、update、delete 等操作 commit 提交后会清空缓存区域，防止脏读。 
+- 与⼀级缓存其机制相同，默认也是采⽤ PerpetualCache，HashMap 存储
+- 二级缓存是**SqlSessionFactory**级别的(SqlSessionFactory只有一个),根据Mapper的`namespace` 划分区域的，多个SqlSession共享二级缓存
+- 相同 `namespace` 的 **mapper** 查询的数据缓存在同一个区域，如果使用 **mapper** 代理方法每个 **mapper** 的 `namespace` 都不同，此时可以理解为二级缓存区域是根据 **mapper** 划分。
+-  每次查询会**先从缓存区**域查找，如果找不到则从数据库查询，并将查询到数据写入缓存。Mybatis 内部存储缓存使用一个 **HashMap**，==key== 为 ==hashCode==+==sqlId==+==Sql== 语句。**value** 为从查询出来**映射生成**的 j**ava** 对象。 sqlSession 执行 insert、update、delete 等操作 commit 提交后会清空缓存区域，防止脏读。 
 
 ### 配置二级缓存
 
@@ -345,7 +342,7 @@ SqlSessionFactory中的其他SqlSession对象依旧可以使用二级缓存中�
 
 - 一级缓存是销毁一个SqlSession中的所有查询数据
 
-- 二级缓存是销毁同一个namespace 下Mapper中的所有查询数据
+- 二级缓存是销毁同一个namespace 下Mapper中的所有查询数据，执行update、insert、delete操作会清空二级缓存
 
 
 

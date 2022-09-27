@@ -1,4 +1,4 @@
-﻿
+# String
 
 ## 1、声明
 
@@ -289,7 +289,7 @@ abcd
 char[]转字符串：abcd
 abcd
 ```
-# StringBuffer
+# StringBuffer、StringBuilder
 ## 1.概述
 
 |          类          |                 值                 |                      |                  |
@@ -378,5 +378,4 @@ abcd
     implements java.io.Serializable, CharSequence
 */
 ```
-
 

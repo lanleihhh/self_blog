@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand />
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6cb832ba-a7e8-4f79-b91d-ab2e5fb7cb4d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/img/image-20220816194937609.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/self_blog.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/Current/面试题.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/JavaSE/Java中如何让一个集合不可改变？.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/JavaSE/深入了解HashMap的底层原理.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/JavaSE/集合面试题.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/Spring/spring面试题.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/0df18eee7e9149fc99a78d1cbc206cfb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/0ea0222cf0a94ac3a548a6988cf7f51d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/1d417ddf9c164369a315e80eb10dfa40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/4ac27b412f1d404b8659574b424b221c.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/8f092972c2564693b4eb60032e11cfe8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/ca191022eedf47f191967925eaafa719.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/image-20220817172251005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/image-20220917140044896.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/image-20220919101026929.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/img/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2Fimg_convert%2Fb5753b77aaf2cefccc7aefc83ab4491b.png&amp;refer=http%3A%2F%2Fimg-blog.csdnimg.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/ohter/拦截器、过滤器、监听器.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Mybatis/面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Mybatis/面试题.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaSE/Java-集合.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/Java-集合.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaSE/String.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/String.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaSE/String面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/String面试题.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/MySQL/MySQL面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MySQL/MySQL面试题.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/MySQL/mysql3.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MySQL/mysql3.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Redis/数据类型.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Redis/数据类型.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Spring/Java框架--spring(三、AOP--面向切面编程).md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Spring/Java框架--spring(三、AOP--面向切面编程).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Spring/Java框架--spring(四、事务管理、事务传播、spring整合mybatis).md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Spring/Java框架--spring(四、事务管理、事务传播、spring整合mybatis).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Spring/Spring知识补充.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/数据结构/排序算法_计数排序、快速排序、三路快排、冒泡排序、选择排序、插入排序.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/数据结构/排序算法_计数排序、快速排序、三路快排、冒泡排序、选择排序、插入排序.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/计算机网络/HTTP_HTTPS_DNS.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/计算机网络/HTTP_HTTPS_DNS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/计算机网络/传输层tcp udp.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/计算机网络/传输层tcp udp.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/计算机网络/网络层：IP ARP.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/计算机网络/网络层：IP ARP.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,16 +57,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/lanlei/IdeaProjects/framework/mybaitspro&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\lanlei\笔记\self_blog\ohter" />
@@ -44,8 +73,26 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="self_blog" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -53,6 +100,33 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="self_blog" />
       <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -81,6 +155,8 @@
       <workItem from="1660301896004" duration="1562000" />
       <workItem from="1660621836077" duration="21000" />
       <workItem from="1660638436355" duration="1298000" />
+      <workItem from="1661427517810" duration="33000" />
+      <workItem from="1664269401161" duration="736000" />
     </task>
     <task id="LOCAL-00001" summary="3.1">
       <created>1660016611613</created>
@@ -270,6 +346,7 @@
         <entry key="4a1d014d-726a-41f4-9999-70e3c46d0b04" value="TOOL_WINDOW" />
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />

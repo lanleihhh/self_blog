@@ -1,4 +1,4 @@
-﻿
+
 
 ## 1. 概述
  当我们需要保存一组一样（类型相同）的元素的时候，我们应该使用一个容器 来存储，数组就是这样一个容器。  数组有什么缺点？ 
@@ -32,7 +32,7 @@ Object [] objs = {false,10,'a',"hello",new Date()};
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/img_convert/06f8559b90d8ae436d5b5ad123a1ea84.png#pic_center)
 
-
+<img src="../img/image-20220919101026929.png" alt="image-20220919101026929" style="zoom:50%;" />
 
 ## 2.  泛型
 

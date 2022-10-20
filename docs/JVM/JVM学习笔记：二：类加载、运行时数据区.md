@@ -1,4 +1,4 @@
-﻿
+
 # 1.类加载
 ## 1. 1类加载子系统
 类加载器子系统负责从文件系统或网络中加载 class 文件。
@@ -13,10 +13,11 @@
 2. class file 加载到JVM中，被称为DNA元数据模板，放在方法区中。
 3. 在 .class --> JVM --> 最终称为元数据模板，此过程就要有一个运输工具（类加载器--Class Loader）。
 
-
 ## 1.3 类加载的过程
-	
-![在这里插入图片描述](https://img-blog.csdnimg.cn/1fd76c4ad7284d5697618a156cbc54e9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+![image-20221011071105090](../img/image-20221011071105090.png)
+
+
 ### 1. 加载
 1. 通过类名 (地址) 获取此类的二进制字节流。
 2. 将这个字节流所代表的**静态存储结构**转换为方法区（元空间）的**运行时结构**
@@ -51,7 +52,7 @@
 `new User()`
 - ==反射==创建类的实例
 `Class.forName("com.mysql.jdbc.Driver")`
--  ==序列化==(Serialize)创建类的实例
+-  ==反序列化==(Serialize)创建类的实例
 - 初始化该类的一个子类（会首先初始化父类）
 - 访问该类的静态属性或静态方法
 - 含有main()方法的类启动时
@@ -60,6 +61,7 @@
 1、访问该类的==常量==(常量在链接阶段已经存入常量池了)
 2、==子类调用父类的静态变量==
 3、==定义该类的数组引用==不会初始化该类
+
 #### 类的初始化顺序
 - 先初始化静态的,多个静态的按照从上向下的顺序执行
 - 若该类由父类，那么先初始化父类中的静态成员/块，再初始化子类中的静态
@@ -238,7 +240,58 @@ Java虚拟机对Class文件采用的是按需加载的方式,即当需要该类�
 没有执行自定义String类的构造方法，依然创建的是Java核心类库中的String。
 `双亲委派机制保护了Java核心类不被用户自定义类所替换`
 
+### 对双亲委派机制的理解？
 
+JVM有
+
+- 用户自定义类加载器(可以加载指定路径下的类)，继承应用程序类加载器，自己实现；
+- 应用程序类加载器(加载当前classpath下的类)；
+- 扩展类加载器(加载lib\ext目录下的jar包和class文件)；
+- 启动类加载器(加载Java核心类库，rt.jar/resource.jar) c++编写；
+
+
+
+双亲委派的原理：
+
+进行类加载时，就算要加载的类不是父类加载器负责的范围，也要委托给父类加载器去加载，一直向上委托给启动类加载器，如果加载不到该类，再依次向下委托给子类加载器去加载，如果一直到用户自定义类加载器也没有加载到，那么会抛出ClassNotFoundException
+
+
+
+双亲委派的作用：
+
+- 双亲委派机制可以避免类的重复加载，父类加载到该类的话，会直接返回，子类不会重复加载
+
+- 双亲委派机制保护了Java的核心类库不被自定义的类替换掉
+
+
+
+双亲委派的实现：
+
+1. 判断该类是否被加载过
+2. 如果没有被加载，如果父类不为空，也就是还没有到达最顶端的类加载器，就将加载请求委托给父类加载器
+3. 如果父类为空，也就是已经到达了启动类加载器，由启动类加载器来加载这个类
+4. 如果没有加载到，向下委派给子类加载器去加载，一直到最底层，如果加载不到就会抛出ClassNotFoundException
+
+### 如何打破双亲委派机制？
+
+打破双亲委派也就是说：让类加载器可以加载不属于自己加载范围的jar包或class文件
+
+1. **继承ClassLoader，重写loadClass()**方法,实现自定义类加载
+
+   可以自定义要加载的类使用哪个类加载器；改变源码中委托给父类加载器的逻辑，
+
+2. **线程上下文类加载器**，将启动类加载器负责加载的类交给应用类加载器来加载
+
+   通过**Thread**类**setContextClassLoader**()方法设置当前类使用的类加载器的类型
+
+   如：java.jdbc.Driver接口，接口的加载是由启动类加载器负责，但是它由其他数据库厂商去实现，因此就有启动类加载的类由应用类加载器来调用的情况
+
+   
+
+Tomcat中打破双亲委派，实现不同应用之间的资源隔离
+
+- 可能部署多个war包，不同程序之间可能依赖同一个类库的不同版本，需要保证每一个程序的类库都是独立相互隔离的
+- 防止web容器自身的类库和应用程序的类库混淆
 
 ## 1.6 类的主动使用和被动使用
 JVM中规定，每个类or接口被**首次主动使用时才对其进行初始化**，有主动使用，也就有被动使用。
@@ -264,7 +317,7 @@ JVM中规定，每个类or接口被**首次主动使用时才对其进行初始�
 JVM的运行时数据区,不同的虚拟机实现可能有所不同,但是都会遵从Java虚拟机的规范,Java8 虚拟机规范规定,Java虚拟机所管理的内存将会包含以下几个运行时数据区域:
 1.  **程序计数器(Program Counter Register)**
 	是一块较小的内存空间,可以看做是==当前线程所执行的字节码的行号指示器==。
-2. **Java 虚拟机栈（Java Virtual Machine Stacks**
+2. **Java 虚拟机栈（Java Virtual Machine Stacks)**
 	是Java方法执行的内存模型，每个**方法在执行**的同时都会创建一个**栈帧**（Stack Frame）用于				`存储局部变量表，操作数栈，动态链接，方法出口`等信息，每个方法从调用直至执行完成的过程，都对应着一个栈帧在虚拟机栈中入栈到出栈的过程。
 3. **本地方法栈（Native Method Stack）**
 	与虚拟机栈的作用一样,区别在于**虚拟机栈是服务Java方法的**,而==本地方法栈是为虚拟机调用Native方法服务的==
@@ -274,10 +327,10 @@ JVM的运行时数据区,不同的虚拟机实现可能有所不同,但是都会
 	**用于存储已经被虚拟机加载**的`类信息、常量、静态变量、即时编译后的代码`等数据。 
 	方法区是很重要的系统资源，是硬盘和CPU的中间桥梁，承载着操作系统和应用程序的实时运行。
 	JVM内存布局规定了Java在运行过程中内存申请，分配、管理的策略，保证了JVM的搞笑稳定运行。不同的JVM对于内存的划分方式和管理机制存在着部分差异，此处使用HotSpot虚拟机为例。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/eb1cf4b77b7b4acb8151dc6d928eb877.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
-Java虚拟机定义了运行期间会使用到的运行时数据区。
-**其中有一些会随着虚拟机启动而创建，随着虚拟机退出而销毁**。
-另外一些则是与线程一一对应的。**与线程对应的区域会随着线程开始而创建，结束而销毁**
+	![在这里插入图片描述](https://img-blog.csdnimg.cn/eb1cf4b77b7b4acb8151dc6d928eb877.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
+	Java虚拟机定义了运行期间会使用到的运行时数据区。
+	**其中有一些会随着虚拟机启动而创建，随着虚拟机退出而销毁**。
+	另外一些则是与线程一一对应的。**与线程对应的区域会随着线程开始而创建，结束而销毁**
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/80502e6602764134994a4dbd0431b4e7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
 上图中
@@ -322,6 +375,7 @@ JVM中的程序计数寄存器（Program Counter Register）中的Register命名
 
 Java虚拟机栈(Java Virtual Machine Stack)，**每个线程在创建时都会创建一个虚拟机栈**，内部保存一个个==栈帧==，对应着一次==方法的调用==。
 **Java虚拟机栈是线程私有的**，**生命周期随线程启动而产生，线程结束而消亡**。
+
 ### 栈与堆的区别
 栈是运行时的单位，而堆是存储的单位。
 - **栈**是解决程序的==运行问题==，加载方法运行
@@ -330,9 +384,11 @@ Java虚拟机栈(Java Virtual Machine Stack)，**每个线程在创建时都会�
 ### 作用
 主管Java程序的运行（方法），保存了方法的**局部变量**（基本数据类型，对象的引用地址），部分**结果**，并参于方法的**调用和返回**。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/ac89bdb24b7546ffb62e28de577a8f35.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 ### 栈的特点
 栈是一种==快速==有效的分配存储方式，访问速度**仅次于程序计数器**
 JVM直接对Java栈的操作有两个：
+
 - 调用方法--**进栈**
 - 方法结束--**出栈**
 
@@ -375,6 +431,7 @@ JVM直接对Java栈的操作有两个：
 - 对于引用类型的变量，存储它指向对象的引用
 
 **操作数栈**
+
 - 栈的典型应用--对表达式求值
 - 在一个线程执行方法的过程中，实际上就是不断执行语句的过程，本质也就是进行计算的过程。`可以说程序中的所有计算过程都是借助于操作数栈来完成的`
 
@@ -394,7 +451,9 @@ JVM直接对Java栈的操作有两个：
  - -Xms:10m（堆起始大小）
  - -Xmx:30m（堆最大内存大小）
  - 一般情况可以将起始值和最大值设为一致，如此可以减少垃圾回收之后堆内存重新分配大小的次数，提高效率。
-- 《Java虚拟机规范》中
+
+《Java虚拟机规范》中
+
  - 堆可以处于**物理上不连续**的内存空间中，但**逻辑上应该被视为连续**的。
  - 对Java堆的描述是：所有的**对象实例**都应当**在运行时分配到堆**上
 - 在方法结束后，堆中的对象不会马上移除，仅仅在垃圾收集的时候才会被移除。
@@ -410,7 +469,7 @@ Java8以及之后的堆内存分为：
 - Survivor  **幸存者区**
 	- Survivor0（from）
 	- Survivor1（to）
-![在这里插入图片描述](https://img-blog.csdnimg.cn/0c78fe00e8cb43c88a4f8c89010d0a55.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_15,color_FFFFFF,t_70,g_se,x_16)
+	![在这里插入图片描述](https://img-blog.csdnimg.cn/0c78fe00e8cb43c88a4f8c89010d0a55.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_15,color_FFFFFF,t_70,g_se,x_16)
 
 ### 为什么分区？
 
@@ -459,7 +518,6 @@ HotSpot VM的GC按照回收区域分为两大类型：
 		
 	- 老年区收集(Major GC / Old GC)：`只是老年区的垃圾收集`
 
-	
 -  整堆收集(Full GC)  `整个Java堆和方法区的垃圾收集`
 	- `System.gc()时`
 	- 老年区空间不足时
@@ -481,20 +539,20 @@ TLAB大小默认占整个Eden区的1%
 
 
 在多线程情况下，可以通过在堆空间中设置参数`-XX:UseTLAB`，在堆空间中为线程开辟一块空间只给当前线程使用，用来存储当前线程中产生的对象，每个线程使用自己的TLAB，避免线程同步，空间竞争，提高对象的分配效率。
- 
- 
+
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/ec928d85c37a4ce596fb826212442e56.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
 
- 
-### 字符串常量池
- JDK7之前,字符串常量池位置在方法区(永久代)中保存
 
+### 字符串常量池
+ JDK7之前,字符串常量池位置在方法区(永久代)中保存,JDK7之后移动到了堆中
 
 JDK8以后,方法区(也叫元空间metaspace)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/07b9d7abddb34e389a7c965ad5f22daa.png)
 
 JDK7以后,将字符串常量池的位置放到了堆空间,因为方法区只有触发Full GC 的时候才会执行永久代的垃圾回收,回收效率低,`老年区空间 or 方法区不足触发Full GC`
 在开发中会有大量的字符串被创建,回收效率低,导致永久代内存不足,放到堆中能够及时回收内存.
+
 ### 堆空间的参数设置
 官网: https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
 常用参数:

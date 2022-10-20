@@ -1,4 +1,4 @@
-﻿
+
 >虚拟机：Virtual Machine ，是一款软件，用来执行一系列计算机指令。大体上，虚拟机可以分为**系统虚拟机**和**程序虚拟机**。
 >**VMware**属于系统虚拟机，是对物理计算机的仿真，提供了一个可运行完整操作系统的平台。
 >**JVM** 属于程序虚拟机，它专门为执行某个计算机程序而设计。
@@ -34,7 +34,7 @@ JVM（Java Virtual Machine）Java虚拟机
  2. 运行时数据区（Runtime Data Area）
  3. 执行引擎（Execution Engine）
  4. 本地库接口（Native Interface）
- 
+
  简图：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/f6c48b17baa443b99c44fadb8d6a4710.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
 
@@ -66,10 +66,11 @@ Java编译器输入的指令流基本上是一种基于**栈的指令集架构**
 	- 不需要硬件支持，可移植型好，更好实现跨平台
 
 - 基于寄存器式架构特点：
- 	- 指令完全依赖于硬件，可移植性差
- 	- 性能优秀，执行更高效
- 	- 完成一项操作使用的指令更少
-	
+  - 指令完全依赖于硬件，可移植性差
+  - 性能优秀，执行更高效
+  - 完成一项操作使用的指令更少
+
+
 执行 `2+3` 逻辑操作，指令如下：
 1. 基于栈的计算流程（JVM为例）
 	

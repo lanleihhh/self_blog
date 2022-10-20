@@ -126,5 +126,87 @@ JVM中对class文件格式及常量池中对String的结构定义：
 
 
 
+# 4.intern()方法
+
+```java
+String s1 = new StringBuilder("hello ").append("word").toString;
+System.out.println(s1 == s1.intern());
+```
+
+intern() 方法是一个 native 的方法，返回常量池中的字符串引用，主要体现在以下两点：
+
+1. 如果常量池中已存在该字符串，则直接返回常量池中该对象的引用。
+2. 如果常量池中不存在该字符串，则在常量池中加入该对象引用并返回。
+
+```java
+public class StrIntrenTest {
+    
+    public static void main(String[] args) {
+        // 1. 字面量创建形式
+        String s1 = "jmcui";
+        //  1. 在字符串常量池中生成字符串"jmcui"实例
+        //  2. 将栈中的 s1 指向字符串常量池中的字符串"jmcui"实例
+
+        //因为字面量的创建方式是在字符串常量池中生成实例，而 intern() 方法返回常量池中的字符串引用，两个引用自然是同一个
+        System.out.println("s1 == s1.intern() ：" + (s1 == s1.intern())); // true
+
+        // 2. new 创建方式
+        String s2 = new String("jmcui");
+        //  1. 在Java堆中生成字符串"jmcui"实例
+        //  2. 将栈中的 s2 指向Java堆中的字符串"jmcui"实例
+
+        //因为 new String() 的方式是在堆（Heap）上创建实例，二者不是同一个引用
+        System.out.println("s1 == s2 ：" + (s1 == s2)); // false
+        
+        //equals 方法是用来比较的是两个字符串的内容是否相等
+        System.out.println("s1.equals(s2) ：" + s1.equals(s2)); // true
+        
+        //当 s2 调用 intern() 方法的时候，发现常量池中已经存在该字符串，则直接返回了该引用（s1 的引用）
+        System.out.println("s1 == s2.intern()：" + (s1 == s2.intern())); // true
+
+        // 3. StringBuilder/StringBuffer 方式和 new 方法类似
+        String s3 = new StringBuilder("jm").append("cui").toString();
+        //  1. 在Java堆中生成字符串【"jmcui"】实例  2. 将栈中的 s3 指向Java堆中的字符串"jmcui"实例
+        
+        //StringBuilder/StringBuffer 创建方式是在堆（Heap）上创建字符串实例，二者不是同一个引用。
+        System.out.println("s1 == s3 ：" + (s1 == s3)); // false
+        
+        //s2 和 s3 都是 new 出来的字符串实例，在堆（Heap）上存储不同的位置，自然不是同一个实例。
+        System.out.println("s2 == s3 ：" + (s2 == s3)); // false
+        
+        //s2 的 intern() 返回的是 s1 的引用，s3 的 intern() 也是一样的道理，因此 s2 的 intern() 和 s3 的 intern() 返回的都是 s1 的引用，所以相等
+        System.out.println("s2.intern() == s3.intern() ：" + (s2.intern() == s3.intern())); // true
+    }
+}
+```
+
+
+
+- jdk1.6：intern()方法会把首次遇到该字符串的实例复制到永久代，返回永久代中该字符串实例的引用
+- jdk1.7：intern()不会复制实例，只是在常量池中记录首次出现的实例引用
+
+```java
+
+String s = new StringBuilder("软件开发").toString();
+System.out.println(s == s.intern());//false
+
+String s1 = new StringBuilder("软件").append("开发").toString();
+//1.6为false   1.7为true
+System.out.println(s1 == s1.intern());//true
+
+String s2 = new StringBuilder("ja").append("va").toString();
+//1.6 1.7都为false
+//sun.misc.Version类中有个"java"常量，已经在常量池了
+System.out.println(s2 == s2.intern());//false
+```
+
+- 为什么s == s.intern() 输出 false，s1 == s1.intern() 输出为true？
+
+  因为new StringBuilder("软件").append("开发").toString();在toString()之前字符串常量池并没有"软件开发",在toString()后生成"软件开发"这个字符串，整个过程只有一个对象，返回的是同一个引用
+
+  而new StringBuillder("软件开发").toString();在toString()之前，已经在字符串常量池中存在了"软件开发"字符串了，s.intern()返回的是首次出现的引用地址,s是toString()后的新字符串的引用地址，所以为false
+
+
+
 
 

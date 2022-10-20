@@ -15,7 +15,28 @@
 使用自增：
 - B+树本身是有序的数据结构，如果主键不是⾃增的，在进行增删数据的时候，要判断数据应该存放的位置，进行插⼊和删除，为了保持B+树有序的特性，会频繁地分裂来调整B+树，严重影响性能，所以主键需要是自增的，插⼊时，插⼊在索引数据页末尾。
 
+
+
+## MySQL中带有自增主键，删除部分数据后，再将MySQL重启后，自增键是继续编还是重新编
+
+如果id:1~10，删除id>5
+
+MyISAM插入的新纪录是11
+
+8.0之前：InnoDB新增数据的id是6;
+
+8.0之后：InnoDB新增数据的id是11
+
+原理：
+
+MyISAM会将最大id保存在数据文件中，重启后重新读取。
+
+8.0之前 InnoDB 将最大id保存在内存中，一旦重启，就会丢失最大id，重启后读取新的最大id，最大id+1为新增数据id
+
+8.0之后 每次更改，最大id会记录在redo log中
+
 ## B+树索引 与 Hash索引
+
 Hash索引
 - 对索引的key进行一次hash计算，定位出数据的存储位置
 - hash索引定位数据更高效
@@ -39,21 +60,22 @@ Hash索引
 
 
 ## MyISAM 和 InnoDB的区别
-![在这里插入图片描述](https://img-blog.csdnimg.cn/901f890f2626459db304882ab6e57d94.png)
+<img src="https://img-blog.csdnimg.cn/901f890f2626459db304882ab6e57d94.png" alt="在这里插入图片描述" style="zoom: 50%;" />
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/a108b602dc3d470c9bc2f743e012cc0f.png)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c86ef7cd9c1a42bf98cbeb3576b9e442.png)
 
 1. **InnoDB ⽀持事务，MyISAM 不⽀持事务。**
 2. **InnoDB ⽀持外键，MyISAM 不⽀持。**
-对⼀个包含外键的 InnoDB 表转为 MYISAM 会失败；
+    对⼀个包含外键的 InnoDB 表转为 MYISAM 会失败；
 3. **InnoDB 是聚簇索引，MyISAM 是非聚簇索引。**
-	- 聚簇索引的文件存放在主键索引的叶子节点上，因此 InnoDB 必须要有主键，通过主键索引效率很⾼。
-	但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据（回表）。所以主键不应该过大，如果主键太大，引用主键的辅助索引这些也都会很大。
-	- MyISAM 是非聚集索引，数据文件是分离的，索引保存的是数据文件的地址。主键索引和辅助索引是独立的。
+   - 聚簇索引的文件存放在主键索引的叶子节点上，因此 InnoDB 必须要有主键，通过主键索引效率很⾼。
+   但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据（回表）。所以主键不应该过大，如果主键太大，引用主键的辅助索引这些也都会很大。
+   - MyISAM 是非聚集索引，数据文件是分离的，索引保存的是数据文件的地址。主键索引和辅助索引是独立的。
 
 4. **InnoDB 不保存表的具体行数**，执行 select count(*) from table 时需要全表扫描。
-	
-	**MyISAM 用⼀个变量保存了整个表的行数**，执行上述语句时只需要读出该变量即可，速度很快；
+
+   **MyISAM 用⼀个变量保存了整个表的行数**，执行上述语句时只需要读出该变量即可，速度很快；
+
 6. **InnoDB 支持行锁，MyISAM 支持表锁。**
 
 
@@ -216,4 +238,99 @@ int后面的数字不表示字段的长度，int(n)一般加上zerofill，才有
 
 
 
-## 
+## alter 与 modify的区别
+
+- modify：只能修改字段的属性(修改字段为主键、修改字段的数据类型)，是alter下其中一个功能
+- alter：修改字段，增删字段；包括 add添加字段，drop删除字段，change，modify四个功能
+
+### add
+
+```mysql
+-- 添加到第一列
+alter table date_test add column id int default 0 first;
+
+-- 新增字段到 id 字段之后
+alter table date_test add column name int default 0 after id;
+
+-- 添加索引 
+ALTER TABLE date_test add index INDEX_NAME (name);
+```
+
+注意：
+
+- 在 mysql 中，只有 first 和 after，没有 befor，所以要么就添加到第一列，要么添加到某列之后
+- 如果不设置默认值 0，那默认值则为 null
+- first 或 after 需放在语句最后，不然报错
+
+### drop
+
+```mysql
+-- 删除字段
+alter table 表名 drop id;
+
+-- 删除索引
+alter table 表名 drop index emp_name;
+```
+
+### change
+
+```mysql
+-- 修改字段名称
+alter table 表名 change 列名 新列名 int;
+
+-- 修改字段属性
+alter table 表名 列名 列名 类型 (相同的列名要写两次)
+```
+
+### modify
+
+```mysql
+-- 修改字段 id 为自增主键
+alter table date_test modify id int auto_increment primary key;
+
+-- 修改字段数据类型
+alter table date_test modify sid varchar(20);
+```
+
+### 修改表名：
+
+```mysql
+-- 1.alter修改
+alter table 旧表名 rename as 新表名
+alter table 旧表名 rename  新表名
+
+-- 2.rename修改
+rename table 旧表名 to 新表名;
+```
+
+
+
+## Delete 与 Truncate区别
+
+
+
+delete和truncate都是删除表数据的
+
+- **delete可以按条件删除，truncate只能删除表中所有数据**
+
+  ```mysql
+  # delete - 条件删除
+  DELETE FROM student WHERE id = 1;
+  
+  #  truncate - 删除整个表的数据
+  TRUNCATE TABLE student;
+  ```
+
+- **delete是DML语言，操作时原数据会放到rollback segmengt，可以回滚，Truncate是DDL语言，操作时不会进行存储，不能回滚**
+
+- **delete可以触发delete触发器，truncate不能触发任何delete触发器**
+
+- **delete是逐行删除，不会改变表的结构(DML数据操作语言)，但是速度没有truncate块，truncate是删除整张表，重新新建一个表(DDL数据定义语言)**
+
+- **高水位重置：**
+
+  **delete删除数据，并没有降低表的高水位，数据库容量只上升，不下降；就算表中数据删除了很多，查询效率还是一样的**
+
+  **truncate删除数据，会重置高水位线，数据库容量也会重置，进行查询等DML操作时，速度会有所提升**
+
+  

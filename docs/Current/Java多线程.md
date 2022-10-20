@@ -1,4 +1,4 @@
-﻿# Java多线程
+# Java多线程
 
 ## 1.1  概念
 
@@ -33,7 +33,7 @@
 并行与并发
 - **单核** cpu 下，线程实际是**串行执行**的。操作系统中有一个组件叫做**任务调度器**，将 cpu 的时间片,分给不同的线程使用，只是由于 cpu 在线程间（时间片很短）的切换非常快，人类感觉是同时运行的。 总结为一句话就是：**微观串行，宏观并行**，一般会将这种线程轮流使用 cpu 的做法称为**并发**(**concurrent**)
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/e6ecc7de819645a999d0ffe25035ac3a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_14,color_FFFFFF,t_70,g_se,x_16)
-- **多核** cpu 下，每个核（core）都可以调度运行线程，这时候线程可以是**行**的
+- **多核** cpu 下，每个核（core）都可以调度运行线程，这时候线程可以是**并行**的
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/5675f0df19354cbbb96610f99a4c6d0d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_15,color_FFFFFF,t_70,g_se,x_16)
   如何理解并发?
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/2a1a52aed1704fbf94cf94335f617cbd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_16,color_FFFFFF,t_70,g_se,x_16)
@@ -582,7 +582,6 @@ public class Test {
 运行结果:
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210704202224464.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xhbmxlaWhoaA==,size_16,color_FFFFFF,t_70#pic_center)
-
 
 
 

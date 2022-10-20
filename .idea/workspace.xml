@@ -5,39 +5,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb832ba-a7e8-4f79-b91d-ab2e5fb7cb4d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/self_blog.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/Current/面试题.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/JavaSE/Java中如何让一个集合不可改变？.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/JavaSE/深入了解HashMap的底层原理.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/JavaSE/集合面试题.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/Spring/spring面试题.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/0df18eee7e9149fc99a78d1cbc206cfb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/0ea0222cf0a94ac3a548a6988cf7f51d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/1d417ddf9c164369a315e80eb10dfa40.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/4ac27b412f1d404b8659574b424b221c.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/8f092972c2564693b4eb60032e11cfe8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/ca191022eedf47f191967925eaafa719.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/image-20220817172251005.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/image-20220917140044896.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/image-20220919101026929.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/img/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2Fimg_convert%2Fb5753b77aaf2cefccc7aefc83ab4491b.png&amp;refer=http%3A%2F%2Fimg-blog.csdnimg.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ohter/拦截器、过滤器、监听器.md" afterDir="false" />
+    <list default="true" id="6cb832ba-a7e8-4f79-b91d-ab2e5fb7cb4d" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/JavaSE/Java-集合.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/Java-集合.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/JavaSE/String.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/String.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/JavaSE/String面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/String面试题.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/MySQL/MySQL面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MySQL/MySQL面试题.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/MySQL/mysql3.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MySQL/mysql3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Redis/数据类型.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Redis/数据类型.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Spring/Java框架--spring(三、AOP--面向切面编程).md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Spring/Java框架--spring(三、AOP--面向切面编程).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Spring/Java框架--spring(四、事务管理、事务传播、spring整合mybatis).md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Spring/Java框架--spring(四、事务管理、事务传播、spring整合mybatis).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Spring/Spring知识补充.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/数据结构/排序算法_计数排序、快速排序、三路快排、冒泡排序、选择排序、插入排序.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/数据结构/排序算法_计数排序、快速排序、三路快排、冒泡排序、选择排序、插入排序.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/计算机网络/HTTP_HTTPS_DNS.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/计算机网络/HTTP_HTTPS_DNS.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/计算机网络/传输层tcp udp.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/计算机网络/传输层tcp udp.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/计算机网络/网络层：IP ARP.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/计算机网络/网络层：IP ARP.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_navbar.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_navbar.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_sidebar.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_sidebar.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +32,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IdeaProjects/framework/mybaitspro" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -71,66 +42,6 @@
       <recent name="E:\lanlei\笔记\self_blog\docs" />
       <recent name="E:\lanlei\笔记\self_blog" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="self_blog" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="self_blog" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -156,7 +67,8 @@
       <workItem from="1660621836077" duration="21000" />
       <workItem from="1660638436355" duration="1298000" />
       <workItem from="1661427517810" duration="33000" />
-      <workItem from="1664269401161" duration="736000" />
+      <workItem from="1664269401161" duration="1781000" />
+      <workItem from="1664280820085" duration="23000" />
     </task>
     <task id="LOCAL-00001" summary="3.1">
       <created>1660016611613</created>
@@ -305,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660639124636</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Changes">
+      <created>1664271195644</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1664271195644</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,6 +273,21 @@
     <MESSAGE value="3.1" />
     <MESSAGE value="3.2" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1664271193061">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1664271193061" />
+    <state x="368" y="37" key="FileChooserDialogImpl" timestamp="1664280840936">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="368" y="37" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1664280840936" />
+    <state x="133" y="9" key="Vcs.Push.Dialog.v2" timestamp="1664271596040">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="133" y="9" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1664271596040" />
   </component>
 </project>

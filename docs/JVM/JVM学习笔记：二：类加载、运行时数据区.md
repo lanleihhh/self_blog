@@ -471,6 +471,8 @@ Java8以及之后的堆内存分为：
 	- Survivor1（to）
 	![在这里插入图片描述](https://img-blog.csdnimg.cn/0c78fe00e8cb43c88a4f8c89010d0a55.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_15,color_FFFFFF,t_70,g_se,x_16)
 
+JVM 每次会使用Eden和一块survior区存储对象，总是有一块survior是空闲的，所以新生代的空间利用率是90%
+
 ### 为什么分区？
 
 不同对象的生命周期不同，将对象根据存活概率分类，堆存活时间长的对象放到固定区，减少扫描垃圾时间和GC的频率。针对不同的分区使用不同的垃圾回收算法，提高垃圾回收效率。
@@ -505,11 +507,12 @@ Java8以及之后的堆内存分为：
 配置新生区与老年区在堆结构的占比
 - 默认`-XX:NewRatio=2` 表示新生区占1,老年区占2  `新生区占堆的1/3`
 - 修改`-XX:NewRatio=4` 表示新生区占1,老年区占4  `新生区占堆的1/5`
-
 - 如果在整个项目中,**生命周期长的对象偏多**,可以通过**调整老年区的大小来进行调优**
 - 在HotSpot中, 默认`-XX:SurvivorRatio=8`,Eden:S0:S1===8:1:1==
 	可以通过参数`-XX:SurvivorRatio`调整Eden区空间占比
 	`-XX:SurvivorRatio=4`,Eden:S0:S1=4:1:1
+
+
 
 ### 分代收集思想 Minor GC、Major GC、Full GC
 HotSpot VM的GC按照回收区域分为两大类型：
@@ -523,6 +526,7 @@ HotSpot VM的GC按照回收区域分为两大类型：
 	- 老年区空间不足时
 	- 方法区空间不足时
 	- `开发期间尽量避免整堆收集，因为再垃圾回收时，会STW（stop the world ）回收时会停止其他线程运行。`
+	- JVM调优的目的就是减少Full GC，减少STW的时间
 
 ### TLAB 机制
 TLAB(Thread Local Allocation Buffer)：**线程本地分配缓存区**，是一个线程独享的内存分配区域。
@@ -590,6 +594,22 @@ JDK7以后,将字符串常量池的位置放到了堆空间,因为方法区只�
 - 即时编译器编译后的代码
 
 方法区包含了一个"**运行时常量池**"
+
+常量池避免了频繁的创建和销毁对象而影响系统性能，其实现了对象的共享
+
+**Integer常量池：**Integer 的 valueOf 方法很简单，它判断变量是否在 **IntegerCache** 的最小值（-128）和最大值（127）之间，如果在，则返回常量池中的内容，否则 new 一个 Integer 对象。
+
+**String 是由 final 修饰的类**:
+
+**1.String** str = **new** **String**("abcd");
+
+**2.String** str = "abcd";
+
+第一种使用 new 创建的对象，存放在堆中。每次调用都会创建一个新的对象。
+
+第二种:先在栈上创建一个 String 类的对象引用变量 str，**然后通过符号引用去字符串常量池中找有没有 “abcd”，如果没有，则将“abcd”存放到字符串常量池中，并将栈上的 str 变量引用指向常量池中的“abcd”。如果常量池中已经有“abcd”了，则不会再常量池中创建“abcd”，而是直接将 str 引用指向常量池中的“abcd”。**
+
+JDK7 及以后的版本中将字符串常量池放到了堆空间中。因为方法区的回收效率很低,我们开发中会有大量的字符串被创建， 回收效率低。放到堆里，能及时回收内存
 
 >Java虚拟机规范中说明:尽管所有的方法区在逻辑上是属于堆的一部分,但对于 HotSpotJVM 而言,方法区还有一个别名叫做 Non-Heap(非堆),目的就是要和堆分开
 

@@ -1,4 +1,4 @@
-﻿# staitc
+# staitc
 ## 1.static变量
 
 - 静态变量在**内存**中只有==一个==拷贝,JVM只为其**分配一次内存**
@@ -46,8 +46,6 @@ public class staticTest {
 运行结果:
 
 ![\[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-sPnrQmW4-1618743974193)(img/p1.jpg)\]](https://img-blog.csdnimg.cn/20210418190716576.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xhbmxlaWhoaA==,size_16,color_FFFFFF,t_70#pic_center)
-
-
 
 
 ## 2.static方法
@@ -383,8 +381,8 @@ public B convert(A a) {
 
 ```java
 public synchronized void copyInto(Object[] anArray) {
-       System.arraycopy(elementData, 0, anArray, 0, elementCount);
-   }
+    System.arraycopy(elementData, 0, anArray, 0, elementCount);
+}
 ```
 2.**子类重写父类的同步方法时，若想要同步，必须声明为synchronized。**
 
@@ -412,7 +410,7 @@ class Child extends Parent {
 2. **构造方法不能使用synchronized关键字，可以在构造方法中使用同步代码块**
 		
 ### 修饰代码块
-	  
+
 
 ```java
 /*
@@ -682,7 +680,6 @@ default Spliterator<T> spliterator() {
      return Spliterators.spliteratorUnknownSize(iterator(), 0);
 }
 ```
-
 
 
 

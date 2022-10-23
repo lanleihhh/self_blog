@@ -8,14 +8,17 @@
       - [锁机制、SQL优化](MySQL/mysql4.md)
       - [MySQL面试题](MySQL/MySQL面试题.md)
       - [数据库连接池的简单实现](MySQL/数据库连接池的简单实现.md)
+     * kafka
+      - [概述](kafka/kafka入门.md)
+
     * Spring
+      - [Spring面试题](Spring/Spring知识补充.md)
       - [Spring：hello world](Spring/Java框架--spring(一、hello%20world).md)
       - [Spring：IOC、Bean管理](Spring/Java框架--spring(二、IOC，springBean管理,springJDBC).md)
       - [Spring：JDBC](Spring/jdbc.md)
       - [Spring：AOP](Spring/Java框架--spring(三、AOP--面向切面编程).md)
       - [Spring：事务](Spring/Java框架--spring(四、事务管理、事务传播、spring整合mybatis).md)
       - [Spring整合Myabits](Spring/整合mybatis.md)
-      - [Spring知识补充](Spring/Spring知识补充.md)
       - [SpringMVC：概述、搭建、接受请求](Spring/springMVC(1、概述&搭建&接收请求).md)
       - [SpringMVC：过滤静态资源、中文乱码处理、Ajax返回JSON](Spring/springMVC(2、过滤静态资源文件&中文乱码处理&Ajax返回JSON).md)
       - [SpringMVC：tomcat管理文件、文件上传、拦截器](Spring/springMVC(3、tomcat管理文件夹&文件上传&拦截器).md)
@@ -30,6 +33,7 @@
       - [MyBatis缓存](Mybatis/MyBatis缓存.md)
       - [MyBatis面试题](Mybatis/面试题.md)
     * JVM
+      - [JVM面试题](JVM/JVM面试题.md)
       - [JVM概述](JVM/JVM学习笔记%20一：JVM概述.md)
       - [类加载机制、运行时数据区](JVM/JVM学习笔记：二：类加载、运行时数据区.md)
       - [本地方法接口、执行引擎](JVM/JVM学习笔记：三%20本地方法接口、执行引擎.md)

@@ -208,5 +208,45 @@ System.out.println(s2 == s2.intern());//false
 
 
 
+# StringBuilder和StringBuffer区别
+
+String是不可变的char数组，对String进行操作时不会改变原对象，只会创建新的String对象，StringBuilder和StringBuffer是在原对象上进行操作
+
+String在拼接时："hello"+"world"，底层会创建StringBuilder对象，调用StringBuilder的append()方法
+
+StringBuilder和StringBuffer都是继承自AbstractStringBuilder
+
+1. 线程安全：StringBuilder线程不安全，StringBuffer的public方法都是synchronized关键字修饰，是线程安全的
+2. 缓冲区：StringBuilder每次toString()都需要复制一次字符数组，再构造一个字符串；StringBuffer每次toString()都会使用缓存区的toStringCache来构造字符串，StringBuffer的toString()也是同步的
+3. 性能：StringBuilder性能更好，但是多线程下推荐使用StringBuffer
+
+
+
+# String的常用方法
+
+| String的判断功能                      | 作用                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| `equals()`                            | 判断两个对象内容是否相等                                     |
+| `contains()`                          | 判断是否包含指定字符串                                       |
+| `isEmpty()`                           | 判断字符串长度是否为0                                        |
+| `startswith()`                        | 判断是否以指定的字符串开头                                   |
+| `endswith()`                          | 判断是否以指定的字符串结尾                                   |
+| `int length()`                        | 返回字符串长度,字符串底层用char型数组存储                    |
+| `char charAt(int index)`              | 返回指定索引的字符                                           |
+| `int indexOf(int ch)`                 | 返回指定字符首次出现的位置                                   |
+| `int indexOf(int ch, int fromIndex)`  | 从指定索引开始,返回指定字符首次出现的位置                    |
+| `int lastIndexOf(int ch)`             | 返回指定字符在字符串中最后一次出现处的位置，如果此字符串中没有这样的字符，则返回 -1 |
+| `String substring(int start)`         | 截取指定区间内字符串,   从开始索引~s.length-1                |
+| `String substring(int start,int end)` | 截取指定区间内字符串, 从开始索引~结束索引-1                  |
+| `String trim()`                       | 去掉字符串两边空格                                           |
+| `String concat(String str)`           | 连接两字符串,返回新对象                                      |
+| `String[] split(String regex)`        | 将字符串分割为给定的正则表达式匹配,返回一个数组              |
+| `byte[] getBytes()`                   | 使用平台的默认字符集将此 `String`编码为字节序列，将结果存储到新的字节数组中。 |
+| `char[] toCharArray()`                | 将此字符串转换为新的字符数组。                               |
+
+
+
+
+
 
 

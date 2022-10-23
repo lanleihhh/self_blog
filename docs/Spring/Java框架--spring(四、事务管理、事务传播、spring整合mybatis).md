@@ -72,20 +72,23 @@ AOP是OOP的延续,在OOP的基础上增加额外的功能,将业务代码与非
 | PROPAGATION_REQUIRED | 如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。  |
 |PROPAGATION_SUPPORTS | 支持当前事务，如果当前没有事务，就以非事务方式执行|
 | PROPAGATION_MANDATORY|使用当前的事务，如果当前没有事务，就抛出异常 |
-|PROPAGATION_REQUIRES_NE W |新建事务，如果当前存在事务，把当前事务挂起 |
-| PROPAGATION_NOT_SUPPOR TED| 以非事务方式执行操作，如果当前存在事务，就把当前事务 挂起|
+|PROPAGATION_REQUIRES_NEW |新建事务，如果当前存在事务，把当前事务挂起 |
+| PROPAGATION_NOT_SUPPORTED | 以非事务方式执行操作，如果当前存在事务，就把当前事务 挂起|
 |PROPAGATION_NEVER | 以非事务方式执行，如果当前存在事务，则抛出异常|
 | PROPAGATION_NESTED| 如果当前存在事务，则在嵌套事务内执行。如果当前没有事 务，则执行与 PROPAGATION_REQUIRED 类似的操作|
 
 重点了解这三个
 1. PROPAGATION_REQUIRED：
+
 	指定的方法必须在事务内执行
 	当前存在事务就加入到事务中，没有事务新建一个事务
 	是spring的默认传播行为
 2. PROPAGATION_SUPPORTS：
+
 	支持当前事务，若当前没有事务，就以非事务方式执行
-	
+
 4. PROPAGATION_REQUIRES_NEW：
+
 	 总是新建一个事务，若当前存在事务，将当前事务挂起，直到新建事务结束
 
 ## 声明式事务不生效的场景

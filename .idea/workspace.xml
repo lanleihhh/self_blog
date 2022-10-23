@@ -6,7 +6,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cb832ba-a7e8-4f79-b91d-ab2e5fb7cb4d" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Current/JUC.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Current/JUC.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JVM/JVM学习笔记：三 本地方法接口、执行引擎.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JVM/JVM学习笔记：三 本地方法接口、执行引擎.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JVM/JVM学习笔记：二：类加载、运行时数据区.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JVM/JVM学习笔记：二：类加载、运行时数据区.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JVM/垃圾回收机制.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JVM/垃圾回收机制.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaSE/JavaSE复习一：认识Java、面向对象.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/JavaSE复习一：认识Java、面向对象.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaSE/JavaSE复习二：常用关键字：static、final、this、super、instanceof、volatile、synchronized、default、transient.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/JavaSE复习二：常用关键字：static、final、this、super、instanceof、volatile、synchronized、default、transient.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaSE/String面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/String面试题.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaSE/集合面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/集合面试题.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/MySQL/MySQL面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MySQL/MySQL面试题.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/MySQL/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/MySQL/mysql3.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MySQL/mysql3.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Spring/Java框架--spring(四、事务管理、事务传播、spring整合mybatis).md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Spring/Java框架--spring(四、事务管理、事务传播、spring整合mybatis).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Spring/spring面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Spring/spring面试题.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_navbar.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_navbar.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_sidebar.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_sidebar.md" afterDir="false" />
     </list>
@@ -43,6 +55,19 @@
       <recent name="E:\lanlei\笔记\self_blog" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -69,6 +94,7 @@
       <workItem from="1661427517810" duration="33000" />
       <workItem from="1664269401161" duration="1781000" />
       <workItem from="1664280820085" duration="23000" />
+      <workItem from="1666491331109" duration="556000" />
     </task>
     <task id="LOCAL-00001" summary="3.1">
       <created>1660016611613</created>

@@ -13,7 +13,7 @@
 
 
 事务用来管理 **insert,update,delete** 语句
-## 事务特性
+## 事务特性ACID
  一般事务必须满足4个条件（ACID）
 - **原子性**（**A**tomicity，或称不可 分割性）
 - **一致性**（**C**onsistency）
@@ -98,7 +98,7 @@ SET GLOBAL TRANSACTION ISOLATION LEVEL 隔离级别
 - ==读未提交==(read uncommitted)：A事务可以读取到B事务未提交的数据。这会带来==脏读==，==幻读==，==不可重复读==问题
 - ==读已提交==(read committed)：A事务只能读取B事务已经提交的修改。 ==避免了脏读==，但是依旧存在**不可重复读**和**幻读**问题。
 - ==可重复读==(repeatable read)：**MySQL 默认隔离级别**,同一个事务中多次读取相同的数据返回的结果是一样的。避免了==脏读==和==不可重复读==问题，但是**幻读**依然存在。
-- ==串行化==(serializable)：事务串行执行(一次只允许一个事务进行操作),避免了以上所有问题,是**最安全的**,但是**效率最低**
+- ==串行化==(serializable)：事务串行执行(一次只允许一个事务进行操作),避免了以上所有问题,是**最安全的**,但是**性能最低**
 
 
 | 事务隔离级别                   | 脏读       | 不可重复读 | 幻读               |
@@ -198,6 +198,14 @@ MVCC( Multi-Version Concurrent Control )是MySQL配合 ==Undo log==、==版本�
 - 对于使用 `READ COMMITTED` 和 `REPEATABLE READ`隔离级别的事务来说，==需要用到版本链==。核心问题是：需要判断版本链当中的哪个版本是当前事务可见的。
 
 InnoDB中设计了一个ReadView的概念
+
+ReadView是“快照读”SQL执行时MVCC提取数据的依据;
+
+- **快照读**就是select * from table....;
+
+- **当前读**是insert、delete、update、select...for update、select ... lock in share mode
+- InnoDB下的可重复读隔离级别下：快照读使用MVCC，当前读使用行锁+间隙锁，执行方式不同
+
 - **ReadView**中主要包含当前系统中还有哪些==活跃的读写事务，将它们的事务id放到一个列表（m_ids）中==
 - 开启一次会话进行SQL读写时，开始事务时生成ReadView，会把当前系统中正在执行的写事务写入到m_id列表中。
 

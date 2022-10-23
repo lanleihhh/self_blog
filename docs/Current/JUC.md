@@ -1,6 +1,6 @@
 ## ConcurrentHashMap
-JDK5 增加 多线程并发安全的HashMap(锁分段/独占锁)
-JDK8 修改为 CAS + synchronized
+JDK1.5 增加 多线程并发安全的HashMap(锁分段/独占锁)
+JDK1.8 修改为 CAS + synchronized
 
 >ConcurrentHashMap不像HashTable一样对整个put方法加锁，而是将每一个位置(Node)作为一个独立空间对其加锁，锁粒度变小，提高了并发访问效率
 

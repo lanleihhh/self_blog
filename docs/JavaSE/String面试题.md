@@ -1,4 +1,6 @@
-# 1.String不能改变的原因是什么？
+# String如何实现的不可变？
+
+## 1.fianl修饰的属性
 
 String底层是一个final修饰的char数组，private修饰的属性不能被外界访问，我们无法改变它，也无法影响String的值
 
@@ -7,8 +9,38 @@ String底层是一个final修饰的char数组，private修饰的属性不能被�
 <font color='red'>这个final修饰的char[] value 不是不可变，数组是引用类型，fianl修饰的引用类型不能指向其他引用，但是本身是可以修改的
 
 因此只要可以访问到String的value数组，就能达到修改String的目的</font>
-# 2.String可以改变的方式有哪些？
-## 2.1 通过反射修改
+
+## 2.通过拷贝实现不可变
+
+**substring方法中调用了构造方法来返回一个新的String对象，该构造方法中调用了Arrays数据工具类的拷贝方法，将传入的char数组，赋给了final修饰的vlaue数组**
+
+
+
+1. `substring(int beginIndex)`将字符串从指定索引处截取，返回截取的部分
+
+```java
+public String substring(int beginIndex) {
+    ......
+    //返回的String是new了一个新的，不是返回的原来对象
+    return (beginIndex == 0) ? this : new String(value, beginIndex, subLen);
+}
+```
+
+2. `String(char value[], int offset, int count) `
+   将传入的字符数组部分变成字符串，offset是起始位置，count是范围大小
+
+```java
+ public String(char value[], int offset, int count) {
+     ......
+     //该构造方法中，要对final修饰的value操作时，将传入的value数组拷贝一份赋给了源码中的value数组
+     this.value = Arrays.copyOfRange(value, offset, offset+count);
+ }
+```
+
+
+
+# String可以改变的方式有哪些？
+## 1 通过反射修改
 ### 代码演示
 
 通过反射可以获取到String的私有属性value
@@ -67,7 +99,7 @@ public int hashCode() {
 }
 ```
 总结：<font color='red'>不能用hashCode()来判断是否是同一个字符串<font>
-## 2.2 通过SharedSecrets.getJavaLangAccess()来创建一个不安全的String
+## 2 通过SharedSecrets.getJavaLangAccess()来创建一个不安全的String
 ### 代码演示
 ```java
 public class TestString {
@@ -94,7 +126,7 @@ public class TestString {
 工作流程
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/1aaf182302424850acb9057c6ea5d7b7.png)
 
-# 3.String的长度最大是多少？有限制吗？
+# String的长度最大是多少？有限制吗？
 <font color='red'>
 <list>
 <li>在运行期间：最大长度是2^31-1
@@ -126,7 +158,23 @@ JVM中对class文件格式及常量池中对String的结构定义：
 
 
 
-# 4.intern()方法
+
+
+# String占空间大小
+
+String占的空间包含String对象本身和内部的char数组(16字节)、int类型的hash(4字节)、long类型的序列化UID(8字节)
+
+<img src="../img/image-20221101122058429.png" alt="image-20221101122058429" style="zoom:50%;" />
+
+
+
+数组 = 8 + 4 + 4 = 16字节
+
+所以String所占空间 = **mark word** 8字节+ **class pointer** 4字节 +  实例数据(char[]、int、long ：16+4+8) 28字节 = 40
+
+
+
+# intern()方法
 
 ```java
 String s1 = new StringBuilder("hello ").append("word").toString;
@@ -216,9 +264,9 @@ String在拼接时："hello"+"world"，底层会创建StringBuilder对象，调�
 
 StringBuilder和StringBuffer都是继承自AbstractStringBuilder
 
-1. 线程安全：StringBuilder线程不安全，StringBuffer的public方法都是synchronized关键字修饰，是线程安全的
-2. 缓冲区：StringBuilder每次toString()都需要复制一次字符数组，再构造一个字符串；StringBuffer每次toString()都会使用缓存区的toStringCache来构造字符串，StringBuffer的toString()也是同步的
-3. 性能：StringBuilder性能更好，但是多线程下推荐使用StringBuffer
+1. **线程安全**：StringBuilder线程不安全，StringBuffer的public方法都是synchronized关键字修饰，是线程安全的
+2. **缓冲区**：StringBuilder每次toString()都需要复制一次字符数组，再构造一个字符串；StringBuffer每次toString()都会使用缓存区的toStringCache来构造字符串，StringBuffer的toString()也是同步的
+3. **性能**：StringBuilder性能更好，但是多线程下推荐使用StringBuffer
 
 
 
@@ -243,6 +291,8 @@ StringBuilder和StringBuffer都是继承自AbstractStringBuilder
 | `String[] split(String regex)`        | 将字符串分割为给定的正则表达式匹配,返回一个数组              |
 | `byte[] getBytes()`                   | 使用平台的默认字符集将此 `String`编码为字节序列，将结果存储到新的字节数组中。 |
 | `char[] toCharArray()`                | 将此字符串转换为新的字符数组。                               |
+
+
 
 
 

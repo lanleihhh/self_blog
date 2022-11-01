@@ -243,17 +243,20 @@ public class Outter {
 	必须在声明时就初始化赋值，这个常量在内存中只有一份，被所有的对象共享
 - 修饰方法(不能被重写)
 - 修饰类(不能被继承)
+- String，Math，Scanner这些都是final类
 ### 使用final修饰一个变量时，是引用不能变，还是引用的对象不能变？
 - 修饰基本类型时，它的值不能改变
 - 修饰引用类型时，引用不能改变
 
 ### 什么是不可变类？
 **不可变类**
+
 - 一旦对象被创建，在对象存活期间，属性不能修改
 - Java类库中的`String`,`八大基本类型包装类`，`BigInteger`,`BigDecimal`等都是不可变类
 - 不可变类的对象可以最为另一个不可变类的属性
 
 **设计一个不可变类需要遵循的规则**
+
 1. fianl修饰类   or   final修饰所有成员方法or(java源码都是使用final修饰类)
 2. 成员变量都用`private final`修饰
 3. 不提供`setter`这种直接修改属性的方法
@@ -285,13 +288,7 @@ public class Outter {
 1. `substring(int beginIndex)`将字符串从指定索引处截取，返回截取的部分
 ```java
 public String substring(int beginIndex) {
-    if (beginIndex < 0) {
-        throw new StringIndexOutOfBoundsException(beginIndex);
-    }
-    int subLen = value.length - beginIndex;
-    if (subLen < 0) {
-        throw new StringIndexOutOfBoundsException(subLen);
-    }
+    ...
     //返回的String是new了一个新的，不是返回的原来对象
     return (beginIndex == 0) ? this : new String(value, beginIndex, subLen);
 }
@@ -301,22 +298,7 @@ public String substring(int beginIndex) {
 将传入的字符数组部分变成字符串，offset是起始位置，count是范围大小
 ```java
  public String(char value[], int offset, int count) {
-     if (offset < 0) {
-         throw new StringIndexOutOfBoundsException(offset);
-     }
-     if (count <= 0) {
-         if (count < 0) {
-             throw new StringIndexOutOfBoundsException(count);
-         }
-         if (offset <= value.length) {
-             this.value = "".value;
-             return;
-         }
-     }
-     // Note: offset or count might be near -1>>>1.
-     if (offset > value.length - count) {
-         throw new StringIndexOutOfBoundsException(offset + count);
-     }
+     ...
      //该构造方法中，要对final修饰的value操作时，将传入的value数组拷贝一份赋给了源码中的value数组
      this.value = Arrays.copyOfRange(value, offset, offset+count);
  }

@@ -9,7 +9,7 @@
   - [MySQL面试题](MySQL/MySQL面试题.md)
   - [数据库连接池的简单实现](MySQL/数据库连接池的简单实现.md)
 * kafka
-  - [概述](kafka/kafka入门.md)
+  - [kafka入门](kafka/kafka入门.md)
 * JavaSE
   - [集合面试题](JavaSE/集合面试题.md)
   - [面向对象](JavaSE/JavaSE复习一：认识Java、面向对象.md)
@@ -83,6 +83,7 @@
   - [Linux学习笔记](Linux/Linux学习笔记.md)
   - [Linux下安装Java运行环境](Linux/Linux安装Java环境.md)
   - [Linux下部署ssm项目](Linux/Linux部署SSM项目.md)
+  - [Linux面试题](Linux/Linux面试题.md)
 * 并发编程
   - [面试题](Current/面试题.md)
   - [Java线程](Current/Java线程.md)

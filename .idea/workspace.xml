@@ -6,21 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cb832ba-a7e8-4f79-b91d-ab2e5fb7cb4d" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/docs/Current/JUC.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Current/JUC.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/JVM/JVM学习笔记：三 本地方法接口、执行引擎.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JVM/JVM学习笔记：三 本地方法接口、执行引擎.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/JVM/JVM学习笔记：二：类加载、运行时数据区.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JVM/JVM学习笔记：二：类加载、运行时数据区.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/JVM/垃圾回收机制.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JVM/垃圾回收机制.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/JavaSE/JavaSE复习一：认识Java、面向对象.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/JavaSE复习一：认识Java、面向对象.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/JavaSE/JavaSE复习二：常用关键字：static、final、this、super、instanceof、volatile、synchronized、default、transient.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/JavaSE复习二：常用关键字：static、final、this、super、instanceof、volatile、synchronized、default、transient.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/JavaSE/String面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/String面试题.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/JavaSE/集合面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/JavaSE/集合面试题.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/MySQL/MySQL面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MySQL/MySQL面试题.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/MySQL/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/MySQL/mysql3.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MySQL/mysql3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Spring/Java框架--spring(四、事务管理、事务传播、spring整合mybatis).md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Spring/Java框架--spring(四、事务管理、事务传播、spring整合mybatis).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Spring/spring面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Spring/spring面试题.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Redis/Redis的主从复制、哨兵机制.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Redis/Redis的主从复制、哨兵机制.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Redis/Redis面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Redis/Redis面试题.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_navbar.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_navbar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sidebar.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_sidebar.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/数据结构/排序算法_计数排序、快速排序、三路快排、冒泡排序、选择排序、插入排序.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/数据结构/排序算法_计数排序、快速排序、三路快排、冒泡排序、选择排序、插入排序.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +22,12 @@
   <component name="Git.Settings">
     <option name="PATH_TO_GIT" value="D:\Program-Files\Git\cmd\git.exe" />
     <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -94,7 +92,9 @@
       <workItem from="1661427517810" duration="33000" />
       <workItem from="1664269401161" duration="1781000" />
       <workItem from="1664280820085" duration="23000" />
-      <workItem from="1666491331109" duration="556000" />
+      <workItem from="1666491331109" duration="2734000" />
+      <workItem from="1666677856865" duration="14000" />
+      <workItem from="1667263408290" duration="2504000" />
     </task>
     <task id="LOCAL-00001" summary="3.1">
       <created>1660016611613</created>
@@ -250,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664271195644</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Changes">
+      <created>1666492056719</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1666492056719</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,17 +310,17 @@
     <option name="LAST_COMMIT_MESSAGE" value="Changes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1664271193061">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1666492055301">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1664271193061" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1666492055301" />
     <state x="368" y="37" key="FileChooserDialogImpl" timestamp="1664280840936">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="368" y="37" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1664280840936" />
-    <state x="133" y="9" key="Vcs.Push.Dialog.v2" timestamp="1664271596040">
+    <state x="133" y="9" key="Vcs.Push.Dialog.v2" timestamp="1666492587168">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="133" y="9" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1664271596040" />
+    <state x="133" y="9" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1666492587168" />
   </component>
 </project>

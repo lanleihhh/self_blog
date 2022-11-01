@@ -52,6 +52,7 @@
       - [Linux学习笔记](Linux/Linux学习笔记.md)
       - [Linux下安装Java运行环境](Linux/Linux安装Java环境.md)
       - [Linux下部署ssm项目](Linux/Linux部署SSM项目.md)
+      - [Linux面试题](Linux/Linux面试题.md)
     * 并发编程
       - [面试题](Current/面试题.md)
       - [Java线程](Current/Java线程.md)

@@ -1,4 +1,4 @@
-﻿
+
 # 对象头
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/e093276b9e9f41d3a6332c8fe07dc1db.png)
 # 对象的创建过程
@@ -27,7 +27,7 @@
 
 # 对象在内存中如何存储的（对象与数组存储不同）
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/6182ada4870147d1b1240a2d79543f8b.png)
+![image-20221101122048516](../img/image-20221101122048516.png)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/16236e2400e04f309190e5c2b49a5f93.png)
 - 对象头：
 	- Mark Word：存储对象自身的运行时数据

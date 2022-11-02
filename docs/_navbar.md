@@ -1,5 +1,6 @@
 <!-- _navbar.md -->
 * [首页](/)
+
 * MySQL
   - [MySQL概述及语法](MySQL/数据库.md)
   - [视图、存储过程、函数、触发器](MySQL/mysql1.md)
@@ -8,8 +9,10 @@
   - [锁机制、SQL优化](MySQL/mysql4.md)
   - [MySQL面试题](MySQL/MySQL面试题.md)
   - [数据库连接池的简单实现](MySQL/数据库连接池的简单实现.md)
+  
 * kafka
   - [kafka入门](kafka/kafka入门.md)
+  
 * JavaSE
   - [集合面试题](JavaSE/集合面试题.md)
   - [面向对象](JavaSE/JavaSE复习一：认识Java、面向对象.md)
@@ -33,6 +36,7 @@
   - [Java递归](JavaSE/Java--递归.md)
   - [Java8新特性-Stream流](JavaSE/Java8新特性---Stream.md)
   - [Java8新特性-Optional类](JavaSE/java8新特性--Optional类.md)
+  
 * JavaEE
   - [Servlet](JavaEE/Servlet.md)
   - [Ajax](JavaEE/Ajax笔记.md)
@@ -40,6 +44,7 @@
   - [Git安装、Idea连接Gitee](JavaEE/Git安装&&idea配置Gitee.md)
   - [Node.js安装](JavaEE/Node.js安装.md)
   - [Nginx入门](JavaEE/Nginx入门.md)
+  
 * Spring
   - [Spring：hello world](Spring/Java框架--spring(一、hello%20world).md)
   - [Spring：IOC、Bean管理](Spring/Java框架--spring(二、IOC，springBean管理,springJDBC).md)
@@ -56,12 +61,14 @@
   - [关于SpringMVC中前端请求路径多了一级目录的解决办法](Spring/关于SpringMVC中前端请求路径多了一级目录的解决办法.md)
   - [SpringBoot集成Redis缓存邮件验证码](Redis/SpringBoot集成Redis缓存邮箱验证码.md)
   - [springboot项目配置一个存放图片的服务器tomcat](Spring/springboot项目配置一个存放图片的服务器tomcat.md)
+  
 * MyBatis
   - [概述、搭建](Mybatis/概述、搭建.md)
   - [动态SQL](Mybatis/动态SQL.md)
   - [转义符、typeHandlers](Mybatis/转义符、typeHandlers.md)
   - [MyBatis缓存](Mybatis/MyBatis缓存.md)
   - [MyBatis面试题](Mybatis/面试题.md)
+  
 * JVM
   - [JVM面试题](JVM/JVM面试题.md)
   - [JVM概述](JVM/JVM学习笔记%20一：JVM概述.md)
@@ -79,11 +86,13 @@
   - [缓存穿透、缓存击穿、缓存雪崩](Redis/Redis：缓存穿透、缓存击穿、缓存雪崩.md)
   - [Redis 主从复制、哨兵机制](Redis/Redis的主从复制、哨兵机制.md)
   - [SpringBoot集成Redis存储邮箱验证码](Redis/SpringBoot集成Redis缓存邮箱验证码.md)
+  
 * Linux
   - [Linux学习笔记](Linux/Linux学习笔记.md)
   - [Linux下安装Java运行环境](Linux/Linux安装Java环境.md)
   - [Linux下部署ssm项目](Linux/Linux部署SSM项目.md)
   - [Linux面试题](Linux/Linux面试题.md)
+  
 * 并发编程
   - [面试题](Current/面试题.md)
   - [Java线程](Current/Java线程.md)
@@ -97,23 +106,30 @@
   - [ThreadLocal](Current/ThreadLocal详解.md)
   - [线程池ThreadPoolExecutor](Current/并发编程之线程池ThreadPoolExecutor.md)
   - [线程之间如何交换数据](Current/线程之间如何交换数据？.md)
+  
 * 计算机网络
   - [应用层：http https dns](计算机网络/HTTP_HTTPS_DNS.md)
   - [传输层：tcp udp](计算机网络/传输层tcp%20udp.md)
   - [网络层：ip arp](计算机网络/网络层：IP%20ARP)
+  
 * 数据结构
+
+  - [十大排序算法](数据结构/十大排序算法.md)
+  - [时间复杂度查询](数据结构/常见数据结构和排序时间复杂度.md)
+
   - [数组](数据结构/数据结构-数组.md)
   - [链表](数据结构/数据结构--链表.md)
   - [栈与队列](数据结构/栈与队列--Java.md)
-  - [排序、计数、快排、三路快排、冒泡、选择、插入排序](数据结构/排序算法_计数排序、快速排序、三路快排、冒泡排序、选择排序、插入排序.md)
   - [二分搜索树](数据结构/二分搜索树.md)
   - [并查集](数据结构/数据结构与算法--并查集.md)
   - [B树](数据结构/B树-多路平衡查找树.md)
   - [BFS与DFS](数据结构/BFS与DFS.md)
   - [如何解决hash冲突](数据结构/如何解决哈希冲突？.md)
   - [Java中除Map实现类之外可以存储K-V的类](数据结构/Java中除Map实现类之外可以存储K-V的类.md)
+
 * 操作系统
   - [操作系统与Java中线程状态的区分](Current/操作系统与Java中线程状态的区分.md)
+  
 * Other
   - [正则表达式](ohter/正则表达式.md)
   - [windows安装多个版本jdk如何切换？](ohter/windows安装多个版本jdk如何切换？.md)

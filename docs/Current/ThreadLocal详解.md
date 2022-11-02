@@ -1,4 +1,4 @@
-﻿
+
 # ThreadLocal
 ## ThreadLocal概述
 线程本地对象，**为每个线程提供一个独立的变量**，和其他线程是隔离的，互不干涉的。
@@ -67,11 +67,11 @@ main线程没有对ThreadLocal变量操作，变量还是默认的0
   **Entry**对象的key是**ThreadLocal**对象：`Entry(ThreadLocal<?> k, Object v)`
   一个ThreadLocal对象只能存储一个键值对，多个键值对需要多个ThreadLocal对象
  - Entry的key---**ThreadLocal是弱引用**：
-  `static class Entry extends WeakReference<ThreadLocal<?>>`
-  弱引用只能存活到下次垃圾回收
+    `static class Entry extends WeakReference<ThreadLocal<?>>`
+    弱引用只能存活到下次垃圾回收
   - Thread类中维护了一个 `threadLocals` 属性,也就是ThreadLocalMap对象
-   `ThreadLocal.ThreadLocalMap threadLocals = null;`
-   每个线程都有自己的ThreadLocalMap对象，也就是每个线程都可以拥有自己的变量，其他线程无法访问，实现线程间数据隔离
+      `ThreadLocal.ThreadLocalMap threadLocals = null;`
+      每个线程都有自己的ThreadLocalMap对象，也就是每个线程都可以拥有自己的变量，其他线程无法访问，实现线程间数据隔离
 
 ThreadLocalMap的结构
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/6248b04ac1f44af393ee5344cacab4a5.png)
@@ -337,4 +337,3 @@ null
 ```
 总结: <font color='red'>强引用与弱引用同时关联一个对象,这个对象不会被GC回收掉,ThreadLocalMap.Entry的key也是一样,只有强引用断开连接,弱引用的对象才能被回收
 
-### 4.

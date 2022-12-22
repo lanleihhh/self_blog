@@ -319,18 +319,19 @@ JVM的运行时数据区,不同的虚拟机实现可能有所不同,但是都会
 	是一块较小的内存空间,可以看做是==当前线程所执行的字节码的行号指示器==。
 2. **Java 虚拟机栈（Java Virtual Machine Stacks)**
 	是Java方法执行的内存模型，每个**方法在执行**的同时都会创建一个**栈帧**（Stack Frame）用于				`存储局部变量表，操作数栈，动态链接，方法出口`等信息，每个方法从调用直至执行完成的过程，都对应着一个栈帧在虚拟机栈中入栈到出栈的过程。
-3. **本地方法栈（Native Method Stack）**
-	与虚拟机栈的作用一样,区别在于**虚拟机栈是服务Java方法的**,而==本地方法栈是为虚拟机调用Native方法服务的==
-4. **Java 堆（Java Heap）**
-	是Java虚拟机中内存最大的一块,是==被所有线程共享==的,在虚拟机启动时创建,==Java堆唯一的目的就是存放对象实例==,几乎所有的对象实例都在这里分配内存。
-5. **方法区（Methed Area）**
-	**用于存储已经被虚拟机加载**的`类信息、常量、静态变量、即时编译后的代码`等数据。 
-	方法区是很重要的系统资源，是硬盘和CPU的中间桥梁，承载着操作系统和应用程序的实时运行。
-	JVM内存布局规定了Java在运行过程中内存申请，分配、管理的策略，保证了JVM的搞笑稳定运行。不同的JVM对于内存的划分方式和管理机制存在着部分差异，此处使用HotSpot虚拟机为例。
-	![在这里插入图片描述](https://img-blog.csdnimg.cn/eb1cf4b77b7b4acb8151dc6d928eb877.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
-	Java虚拟机定义了运行期间会使用到的运行时数据区。
-	**其中有一些会随着虚拟机启动而创建，随着虚拟机退出而销毁**。
-	另外一些则是与线程一一对应的。**与线程对应的区域会随着线程开始而创建，结束而销毁**
+	1.  **本地方法栈（Native Method Stack）**
+	  与虚拟机栈的作用一样,区别在于**虚拟机栈是服务Java方法的**,而==本地方法栈是为虚拟机调用Native方法服务的==
+	
+3.  **Java 堆（Java Heap）**
+  是Java虚拟机中内存最大的一块,是==被所有线程共享==的,在虚拟机启动时创建,==Java堆唯一的目的就是存放对象实例==,几乎所有的对象实例都在这里分配内存。
+4.  **方法区（Methed Area）**
+  **用于存储已经被虚拟机加载**的`类信息、常量、静态变量、即时编译后的代码`等数据。 
+  方法区是很重要的系统资源，是硬盘和CPU的中间桥梁，承载着操作系统和应用程序的实时运行。
+  JVM内存布局规定了Java在运行过程中内存申请，分配、管理的策略，保证了JVM的搞笑稳定运行。不同的JVM对于内存的划分方式和管理机制存在着部分差异，此处使用HotSpot虚拟机为例。
+  ![在这里插入图片描述](https://img-blog.csdnimg.cn/eb1cf4b77b7b4acb8151dc6d928eb877.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
+  Java虚拟机定义了运行期间会使用到的运行时数据区。
+  **其中有一些会随着虚拟机启动而创建，随着虚拟机退出而销毁**。
+  另外一些则是与线程一一对应的。**与线程对应的区域会随着线程开始而创建，结束而销毁**
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/80502e6602764134994a4dbd0431b4e7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16)
 上图中

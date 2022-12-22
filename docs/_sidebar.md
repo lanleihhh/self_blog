@@ -1,5 +1,9 @@
 <!-- _navbar.md -->
 * 我的博客
+
+    * Spring Boot + Vue
+      - [Vue](springboot+vue/Vue项目.md)
+      
     * MySQL
       - [MySQL概述及语法](MySQL/数据库.md)
       - [视图、存储过程、函数、触发器](MySQL/mysql1.md)

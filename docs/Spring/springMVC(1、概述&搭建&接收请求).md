@@ -1,5 +1,5 @@
-﻿
-# springMVC(1、概述&搭建&接收请求)
+
+# springMVC(1、概述&搭建&接收请求).md
 
 ## 一、springMVC
 
@@ -10,7 +10,7 @@
 - 拥有控制器(**Contorller**),接收请求,解析参数,传给服务层(**Service**)
 
 ### 运行流程
-![在这里插入图片描述](https://img-blog.csdnimg.cn/24338a5aa7594f8f9f299279484a87cf.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![image-20221109121039921](../img/image-20221109121039921.png)
 
 
 
@@ -18,7 +18,7 @@
 
 - **DispatcherServlet**:继承自**HttpServlet**,是springMVC中的前端控制器(Front Controller)
 
-  ![在这里插入图片描述](https://img-blog.csdnimg.cn/6f0fda880d5445fa8b78f8040ce7543e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+  ![image-20221109121022043](../img/image-20221109121022043.png)
 
 
 - **HandlerMapping**:DispatcherServlet自己不处理请求,交给页面控制器,**HandlerMapping**负责选择正确的页面控制器,经HandlerMapping处理之后,DispatcherServlet就知道将请求交给哪一个页面控制器了
@@ -47,7 +47,7 @@
 
 在webapp/WEB-INF/web.xml中配置DispatcherServlet
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/7d433187884149afa8a1b6322b3c6073.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGFubGVpaGho,size_10,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![image-20221109121103772](../img/image-20221109121103772.png)
 
 
 ```xml
@@ -293,7 +293,6 @@ public void test(Admin admin){
 注意:若**输入格式与指定格式不匹配,服务器端会返回404**
 
 类似的格式化注解标签还有  **@NumberFormat** ,用于格式化数字
-
 
 
 

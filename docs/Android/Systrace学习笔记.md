@@ -418,3 +418,30 @@ surfaceFlinger：如果SurfaceFlinger本身耗时，dequeueBuffer没有及时响
 
 
 
+## 11. Binder 与 锁
+
+### Systrace中Binder信息
+
+![img](../img/15756309336019.jpg)
+
+### Systrace中锁信息
+
+![img](../img/15756309429683.jpg)
+
+**monitor** contention with **owner** Binder:1605_B (4667) **at** void com.android.server.wm.ActivityTaskManagerService.activityPaused(android.os.IBinder)
+
+(ActivityTaskManagerService.java:1733) **waiters**=2 **blocking** from android.app.ActivityManager$StackInfo com.android.server.wm.ActivityTaskManagerService.getFocusedStackInfo()(ActivityTaskManagerService.java:2064)
+
+- monitor：锁池，未持有锁被阻塞的线程会进入到锁池中，去竞争对象锁
+- 等待池：持有锁的线程释放锁后进入等待池， 等待池中的线程不会去竞争对象锁
+
+- owner：当前持有该对象锁的对象——Binder:1605_B；4667 是其线程 ID
+- at：at后是持有锁的对象正在执行的方法，(ActivityTaskManagerService.java:1733) 是其方法在代码中位置
+- waiters：锁池中竞争锁的线程个数，**waiters**=2表示当前锁池中有两个线程在等待竞争锁
+
+- blocking：竞争不到当前对象锁被阻塞的任务
+
+
+
+
+

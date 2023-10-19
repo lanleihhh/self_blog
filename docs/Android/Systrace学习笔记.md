@@ -376,7 +376,7 @@ GPU 将完成的一帧图像数据写入到 Back Buffer，而显示器使用 Fra
 2. 这样 SurfaceFlinge 就拿到了某个 Surface 最终要显示的内容，但是同一时间可能会有多个 Surface。这里面可能是不同应用的 Surface，也可能是同一个应用里面类似 SurfaceView 和 TextureView，它们都会有自己独立的 Surface。
 3. 这个时候 SurfaceFlinger 把所有 Surface 要显示的内容统一交给 Hardware Composer，它会根据位置、Z-Order 顺序等信息合成为最终屏幕需要显示的内容，而这个内容会交给系统的帧缓冲区 Frame Buffer 来显示（Frame Buffer 是非常底层的，可以理解为屏幕显示的抽象）
 
-![Double Buffer](E:\MyNote\MyNote\docs\image\15764246889873.jpg)
+![Double Buffer](../img/15764246889873.jpg)
 
 ### Triple Buffer
 

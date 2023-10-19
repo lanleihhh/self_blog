@@ -1,11 +1,10 @@
 <!-- _navbar.md -->
-* MyBlog~
+* 我的博客
     * Android
       - [Systrace](Android/Systrace%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
       - [Binder机制](Android/Binder%E6%9C%BA%E5%88%B6.md)
     * Spring Boot + Vue
       - [Vue](springboot+vue/Vue项目.md)
-      
     * MySQL
       - [MySQL概述及语法](MySQL/数据库.md)
       - [视图、存储过程、函数、触发器](MySQL/mysql1.md)
@@ -14,7 +13,6 @@
       - [锁机制、SQL优化](MySQL/mysql4.md)
       - [MySQL面试题](MySQL/MySQL面试题.md)
       - [数据库连接池的简单实现](MySQL/数据库连接池的简单实现.md)
-
     * Spring
       - [Spring面试题](Spring/Spring知识补充.md)
       - [Spring：hello world](Spring/Java框架--spring(一、hello%20world).md)

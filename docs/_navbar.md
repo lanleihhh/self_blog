@@ -4,6 +4,7 @@
 * Android
   - [Systrace](Android/Systrace%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
   - [Binder机制](Android/Binder%E6%9C%BA%E5%88%B6.md)
+  - [Android渲染机制](Android/%E5%AE%89%E5%8D%93%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6.md)
 * Spring Boot + Vue
   - [Vue](springboot+vue/Vue项目.md)
 

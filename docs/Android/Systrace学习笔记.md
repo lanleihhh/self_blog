@@ -289,7 +289,7 @@ InputDispatcher 执行 notifyKey 的时候，会将 Input 事件封装后放到 
 ### 8.1 起源
 
 ####  逐行扫描
-显示器并不是一次性将画面显示到屏幕上，而是从左到右边，从上到下逐行扫描显示，不过这一过程快到人眼无法察觉到变化。以 60 Hz 刷新率的屏幕为例，即 1000 / 60 ≈ 16ms。
+显示器并不是一次性将画面显示到屏幕上，而是从上到下逐行扫描显示，不过这一过程快到人眼无法察觉到变化。以 60 Hz 刷新率的屏幕为例，即 1000 / 60 ≈ 16ms。
 
 #### 屏幕撕裂
 CPU / GPU 生成图像的 Buffer 数据，屏幕从 Buffer 中读取数据刷新后显示。
@@ -327,6 +327,7 @@ HWC 可生成 VSYNC 事件并通过回调将事件发送到 SurfaceFlinge , Disp
 4. HWC产生第二个VSync信号，SF和App同时收到信号，SF获取App在第2步中渲染的Buffer，开始合成(第5步)；App收到VSync-app信号，开始新一帧的Buffer渲染(第1,2,3,4步)
 
 ## 9. Choreographer 编舞者
+
 ### Choreographer 简介
 >Android 主线程运行的本质，其实就是 Message 的处理过程，我们的各种操作，包括每一帧的渲染操作 ，都是通过 Message 的形式发给主线程的 MessageQueue ，MessageQueue 处理完消息继续等下一个消息。
 
@@ -359,24 +360,6 @@ doFrame 主要做：
 ### 下一帧的VSync请求
 每一帧的 doFrame 的时候，都会根据情况触发下一个 Vsync 的申请，这样我们就可以获得连续的 Vsync 信号。
 ## 10. Triple Buffer
-
-###  Double Buffer---Android 4.1之前
-由于图像绘制和读取使用的是同一个缓冲区，所以屏幕刷新时可能读取到的是不完整的一帧画面，使用Double Buffer解决，让绘制和显示器拥有各自Buffer ：Back Buffer 和 Front Buffer。
-
-GPU 将完成的一帧图像数据写入到 Back Buffer，而显示器使用 Frame Buffer，当屏幕刷新时，Frame Buffer 并不会发生变化，Back Buffer 根据屏幕的刷新将图形数据 copy 到 Frame Buffer，copy实际是交换各自的内存地址。
-
-
-一般来说，在同一个 View Hierarchy 内的不同 View 共用一个 Window，也就是共用同一个 Surface。
-
-
-
-每个 Surface 都会有一个 BufferQueue 缓存队列，但是这个队列会由 SurfaceFlinger 管理，通过匿名共享内存机制与 App 应用层交互。
-
-1. 每个 Surface 对应的 BufferQueue 内部都有两个Buffer，一个用于绘制一个用于显示。系统会把内容先绘制到离屏缓冲区（OffScreen Buffer），在需要显示时，才把离屏缓冲区的内容通过 Swap Buffer 复制到 Front Graphic Buffer 中。
-2. 这样 SurfaceFlinge 就拿到了某个 Surface 最终要显示的内容，但是同一时间可能会有多个 Surface。这里面可能是不同应用的 Surface，也可能是同一个应用里面类似 SurfaceView 和 TextureView，它们都会有自己独立的 Surface。
-3. 这个时候 SurfaceFlinger 把所有 Surface 要显示的内容统一交给 Hardware Composer，它会根据位置、Z-Order 顺序等信息合成为最终屏幕需要显示的内容，而这个内容会交给系统的帧缓冲区 Frame Buffer 来显示（Frame Buffer 是非常底层的，可以理解为屏幕显示的抽象）
-
-![Double Buffer](../img/15764246889873.jpg)
 
 ### Triple Buffer
 
@@ -443,5 +426,65 @@ surfaceFlinger：如果SurfaceFlinger本身耗时，dequeueBuffer没有及时响
 
 
 
+## 12.MianThread & RenderThread
 
+在Android 5.0之前，Android应用程序的Main Thread不仅负责用户输入，同时也是一个OpenGL线程，也负责渲染UI。通过引进Render Thread，我们就可以将UI渲染工作从Main Thread释放出来，交由Render Thread来处理，从而也使得Main Thread可以更专注高效地处理用户输入，这样使得在提高UI绘制效率的同时，也使得UI具有更高的响应性。
+
+
+
+### 主线程创建
+
+Android App 线程基于消息机制，Zygote进程fork出的进程视为主线程，主线程需要和App 的 Message绑定。
+
+ActivityThread连接了 fork出的进程 和 Message ，一起组成主线程。
+
+ActivityThread连接fork进程
+
+ActivityThread连接Message：初始化MQ、Looper、Handler(负责处理大部分Message消息)
+
+
+
+### 渲染线程
+
+最初的 Android 版本里面是没有渲染线程的，渲染工作都是在主线程完成，使用的也都是 CPU ，调用的是 libSkia 这个库，RenderThread 是在 Android Lollipop 中新加入的组件，负责承担一部分之前主线程的渲染工作，减轻主线程的负担。
+
+
+
+RenderThread是一个无限循环的线程，它有一个queue来接受任务，有任务来时唤醒线程进行执行。RenderThread是一个单例对象，通过RenderThread::getInstance()来获取创建好的对象。
+
+#### 硬件加速
+
+就是 GPU 加速，这里可以理解为用 RenderThread 调用 GPU 来进行渲染加速 。 硬件加速在目前的 Android 中是默认开启的
+
+在AndroidManifest  里面，在 Application 标签里面加一个`android:hardwareAccelerated="false"`来关闭硬件加速，系统检测到你这个 App 关闭了硬件加速，**就不会初始化 RenderThread** ，直接 cpu 调用 libSkia 来进行渲染
+
+
+
+**Flutter 的渲染是基于 libSkia库的，所以Flutter App在systrace上没有RenderThread ，而是重点关注UI Thread 与GPU**
+
+#### 硬件加速绘制
+
+正常情况下，硬件加速是开启的，主线程的 draw 函数并没有真正的执行 drawCall ，而是把要 draw 的内容记录到 DIsplayList 里面，同步到 RenderThread 中，一旦同步完成，主线程就可以被释放出来做其他的事情，RenderThread 则继续进行渲染工作
+
+#### 渲染线程初始化
+
+渲染线程初始化在真正需要 draw 内容的时候，一般我们启动一个 Activity ，在第一个 draw 执行的时候，会去检测渲染线程是否初始化，如果没有则去进行初始化，更新DIsplayList ，更新结束后通知渲染线程开始工作。
+
+
+
+### 主线程与渲染线程分工
+
+主线程负责处理进程 Message、处理 Input 事件、处理 Animation 逻辑、处理 Measure、Layout、Draw ，更新 DIsplayList ，但是不与 SurfaceFlinger 打交道；渲染线程负责渲染渲染相关的工作，一部分工作也是 CPU 来完成的，一部分操作是调用 OpenGL 函数来完成的。
+
+
+
+当启动硬件加速后，在 Measure、Layout、Draw 的 Draw 这个环节，Android 使用 DisplayList 进行绘制而非直接使用 CPU 绘制每一帧。DisplayList 是一系列绘制操作的记录，抽象为 RenderNode 类
+
+DisplayList 的好处：
+
+1. DisplayList 可以按需多次绘制而无须同业务逻辑交互
+2. 特定的绘制操作（如 translation， scale 等）可以作用于整个 DisplayList 而无须重新分发绘制操作
+3. 当知晓了所有绘制操作后，可以针对其进行优化：例如，所有的文本可以一起进行绘制一次
+4. 可以将对 DisplayList 的处理转移至另一个线程（也就是 RenderThread）
+5. 主线程在 sync 结束后可以处理其他的 Message，而不用等待 RenderThread 结束
 

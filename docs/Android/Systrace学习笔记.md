@@ -488,3 +488,11 @@ DisplayList 的好处：
 4. 可以将对 DisplayList 的处理转移至另一个线程（也就是 RenderThread）
 5. 主线程在 sync 结束后可以处理其他的 Message，而不用等待 RenderThread 结束
 
+
+
+![image-20231019182733220](../img/image-20231019182733220.png)
+
+1. 当VSync信号到来，UI线程执行input...任务，UI线程中 draw 并不是UI真正绘制在屏幕上，draw只是生成一个绘制指令集合DisplayList， 封装为RenderNode，同步给RenderThread；
+2. RenderThread会将这些绘制指令转成OpenGL的指令，最终通过GPU执行绘制到Graphic Buffer
+3. SurfaceFlinger拿到Buffer后，进行layer的合并，最终将数据交给HAL层绘制到屏幕上
+4. 下一个VSync信号到来时，重复上述工作

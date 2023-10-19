@@ -14,11 +14,8 @@
   - [事务、MVCC](MySQL/mysql3.md)
   - [锁机制、SQL优化](MySQL/mysql4.md)
   - [MySQL面试题](MySQL/MySQL面试题.md)
-  - [数据库连接池的简单实现](MySQL/数据库连接池的简单实现.md)
-  
-* kafka
-  - [kafka入门](kafka/kafka入门.md)
-  
+  - [数据库连接池的简单实现](MySQL/数据库连接池的简单实现.md)  
+ 
 * JavaSE
   - [集合面试题](JavaSE/集合面试题.md)
   - [面向对象](JavaSE/JavaSE复习一：认识Java、面向对象.md)

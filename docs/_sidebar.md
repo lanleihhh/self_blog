@@ -14,8 +14,6 @@
       - [锁机制、SQL优化](MySQL/mysql4.md)
       - [MySQL面试题](MySQL/MySQL面试题.md)
       - [数据库连接池的简单实现](MySQL/数据库连接池的简单实现.md)
-     * kafka
-      - [概述](kafka/kafka入门.md)
 
     * Spring
       - [Spring面试题](Spring/Spring知识补充.md)

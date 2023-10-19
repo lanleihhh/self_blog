@@ -1,6 +1,5 @@
 <!-- _navbar.md -->
-* 我的博客
-
+* MyBlog~
     * Android
       - [Systrace](Android/Systrace%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
       - [Binder机制](Android/Binder%E6%9C%BA%E5%88%B6.md)

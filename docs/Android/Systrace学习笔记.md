@@ -403,6 +403,8 @@ surfaceFlinger：如果SurfaceFlinger本身耗时，dequeueBuffer没有及时响
 
 ## 11. Binder 与 锁
 
+[点击了解Binder机制](Android/Binder机制.md)
+
 ### Systrace中Binder信息
 
 ![img](../img/15756309336019.jpg)

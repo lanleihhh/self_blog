@@ -6,6 +6,7 @@
       - [Android消息机制](Android/%E5%AE%89%E5%8D%93%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.md)
       - [Android渲染机制](Android/%E5%AE%89%E5%8D%93%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6.md)
       - [App启动流程](Android/App%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.md)
+      - [Android知识点](Android/%E5%AE%89%E5%8D%93%E7%9F%A5%E8%AF%86%E7%82%B9.md)
     * Spring Boot + Vue
       - [Vue](springboot+vue/Vue项目.md)
     * MySQL

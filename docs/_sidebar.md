@@ -10,6 +10,20 @@
       - [Android知识点](Android/%E5%AE%89%E5%8D%93%E7%9F%A5%E8%AF%86%E7%82%B9.md)
       - [adb命令](Android/adb%E5%91%BD%E4%BB%A4.md)
       - [流畅性分析](Android/%E6%B5%81%E7%95%85%E6%80%A7%E5%88%86%E6%9E%90.md)
+    * Linux
+      - [Linux学习笔记](Linux/Linux学习笔记.md)
+      - [Linux下安装Java运行环境](Linux/Linux安装Java环境.md)
+      - [Linux下部署ssm项目](Linux/Linux部署SSM项目.md)
+      - [Linux面试题](Linux/Linux面试题.md)
+      - [Linux命令大全](Linux/Linux%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.md)
+    * JVM
+      - [JVM面试题](JVM/JVM面试题.md)
+      - [JVM概述](JVM/JVM学习笔记%20一：JVM概述.md)
+      - [类加载机制、运行时数据区](JVM/JVM学习笔记：二：类加载、运行时数据区.md)
+      - [本地方法接口、执行引擎](JVM/JVM学习笔记：三%20本地方法接口、执行引擎.md)
+      - [垃圾回收机制](JVM/垃圾回收机制.md)
+      - [关于 Object obj = new Object()](JVM/关于%20Object%20obj%20=%20new%20Object().md)
+      - [关于对象创建的几个问题](JVM/关于对象创建的几个问题.md)
     * Spring Boot + Vue
       - [Vue](springboot+vue/Vue项目.md)
     * MySQL
@@ -41,14 +55,6 @@
       - [转义符、typeHandlers](Mybatis/转义符、typeHandlers.md)
       - [MyBatis缓存](Mybatis/MyBatis缓存.md)
       - [MyBatis面试题](Mybatis/面试题.md)
-    * JVM
-      - [JVM面试题](JVM/JVM面试题.md)
-      - [JVM概述](JVM/JVM学习笔记%20一：JVM概述.md)
-      - [类加载机制、运行时数据区](JVM/JVM学习笔记：二：类加载、运行时数据区.md)
-      - [本地方法接口、执行引擎](JVM/JVM学习笔记：三%20本地方法接口、执行引擎.md)
-      - [垃圾回收机制](JVM/垃圾回收机制.md)
-      - [关于 Object obj = new Object()](JVM/关于%20Object%20obj%20=%20new%20Object().md)
-      - [关于对象创建的几个问题](JVM/关于对象创建的几个问题.md)
     * Redis
       - [Redis概述、安装](Redis/Redis概述与安装.md)
       - [Redis数据类型](Redis/数据类型.md)
@@ -57,12 +63,6 @@
       - [缓存穿透、缓存击穿、缓存雪崩](Redis/Redis：缓存穿透、缓存击穿、缓存雪崩.md)
       - [Redis 主从复制、哨兵机制](Redis/Redis的主从复制、哨兵机制.md)
       - [SpringBoot集成Redis存储邮箱验证码](Redis/SpringBoot集成Redis缓存邮箱验证码.md)
-    * Linux
-      - [Linux学习笔记](Linux/Linux学习笔记.md)
-      - [Linux下安装Java运行环境](Linux/Linux安装Java环境.md)
-      - [Linux下部署ssm项目](Linux/Linux部署SSM项目.md)
-      - [Linux面试题](Linux/Linux面试题.md)
-      - [Linux命令大全](Linux/Linux%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.md)
     * 并发编程
       - [面试题](Current/面试题.md)
       - [Java线程](Current/Java线程.md)
@@ -99,7 +99,7 @@
       - [windows安装多个版本jdk如何切换？](ohter/windows安装多个版本jdk如何切换？.md)
       - [IDEA中 springboot项目的pom.xml 的 插件安装报错](ohter/IDEA中%20springboot项目的pom.xml%20的%20插件安装报错.md)
       - [同步更新项目到Gitee和GitHub](ohter/同步更新项目到Gitee和GitHub.md)
-    * JavaSE
+    * Java
       - [集合面试题](JavaSE/集合面试题.md)
       - [面向对象](JavaSE/JavaSE复习一：认识Java、面向对象.md)
       - [常用关键字](JavaSE/JavaSE复习二：常用关键字：static、final、this、super、instanceof、volatile、synchronized、default、transient.md)
@@ -122,7 +122,6 @@
       - [Java递归](JavaSE/Java--递归.md)
       - [Java8新特性-Stream流](JavaSE/Java8新特性---Stream.md)
       - [Java8新特性-Optional类](JavaSE/java8新特性--Optional类.md)
-    * JavaEE
       - [Servlet](JavaEE/Servlet.md)
       - [Ajax](JavaEE/Ajax笔记.md)
       - [Maven](JavaEE/Maven概述与搭建.md)

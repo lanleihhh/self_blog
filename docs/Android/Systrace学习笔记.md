@@ -256,7 +256,22 @@ HWC HAL是用于合成从Surfaceflinger接收到的图层，而分担GLES和GPU�
 1）大部分GPU没有为合成优化
 2）当使用Surfaceflinger通过GPU来合成layers 时，应用是无法用GPU来做渲染的工作的
 
+### 6.4 掉帧
 
+通常我们通过 Systrace 判断应用是否**掉帧**的时候，一般是直接看 SurfaceFlinger 部分，主要是下面几个步骤
+
+1. surfaceFlinger的主线程在每个VSync-sf到来时有没有合成？
+
+2. 如果没有合成，看没有合成的原因？
+
+   1. SurfaceFlinger检查发现没有可用的Buffer，所以没有合成？
+   2. SurfaceFlinger被其他的工作占用(截图、HWC)？
+   3. SurfaceFlinger在等待presentFence？
+   4. SurfaceFlinger在等待GPU fence？
+
+3. 如果有合成操作，看目标App的可用Buffer个数是否正常：
+
+   如果App可用Buffer为0---看App端为什么没有及时queueBuffer，因为SurfaceFlinger合成操作触发可能是其他的进程有可用的Buffer
 
 ## 7.Input
 Input分类
@@ -432,6 +447,16 @@ surfaceFlinger：如果SurfaceFlinger本身耗时，dequeueBuffer没有及时响
 
 在Android 5.0之前，Android应用程序的Main Thread不仅负责用户输入，同时也是一个OpenGL线程，也负责渲染UI。通过引进Render Thread，我们就可以将UI渲染工作从Main Thread释放出来，交由Render Thread来处理，从而也使得Main Thread可以更专注高效地处理用户输入，这样使得在提高UI绘制效率的同时，也使得UI具有更高的响应性。
 
+![img](../img/15732904872967.jpg)
+
+1. 主线程处于sleep，等待VSync
+2. VSync到来，主线程被唤醒，**Choreographer** 回调 FrameDisplayEventReceiver.**onVsync** 开始一帧的“绘制”
+3. 处理inpu回调
+4. 处理animation回调
+5. 处理traversal回调
+6. UI Thread 与 RenderThread同步渲染数据，同步结束后，主线程结束一帧的”绘制“，可以继续处理下一个message或者进入sleep等待下一个VSync
+7. RenderThread从BufferQueue中获取一个Buffer（dequeueBuffer），进行处理之后，调用OpenGL 相关的函数，真正地进行渲染操作，然后将渲染好的Buffer放回到BufferQueue中(queueBuffer)，SurfaceFlinger在VSync-sf到来之后，将所有准备好的Buffer取出进行合成
+
 
 
 ### 主线程创建
@@ -445,6 +470,8 @@ ActivityThread连接fork进程
 ActivityThread连接Message：初始化MQ、Looper、Handler(负责处理大部分Message消息)
 
 
+
+进程创建、四大组件(Activity 启动、Service 的管理、Receiver 的管理、Provider 的管理)都会在ActivityThread中进行处理
 
 ### 渲染线程
 

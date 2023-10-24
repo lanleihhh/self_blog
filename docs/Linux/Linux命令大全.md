@@ -331,7 +331,7 @@ test 30
 ```
 
 ```shell
-sort testfile | uniq -c # 统计每一行在文件中出现次数 -c每列旁边显示该行重复出现的次数
+sort testfile | uniq -c # 统计每一行在文件中出现次数 -c
 ```
 
 ### 找出文件中重复行

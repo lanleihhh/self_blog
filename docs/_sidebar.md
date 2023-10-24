@@ -1,12 +1,15 @@
 <!-- _navbar.md -->
 * 我的博客
     * Android
-      - [Systrace](Android/Systrace%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
+      - [Systrace学习笔记](Android/Systrace%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
+      - [Perfetoo使用教程](Android/Perfetoo%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md)
       - [Binder机制](Android/Binder%E6%9C%BA%E5%88%B6.md)
       - [Android消息机制](Android/%E5%AE%89%E5%8D%93%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.md)
       - [Android渲染机制](Android/%E5%AE%89%E5%8D%93%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6.md)
       - [App启动流程](Android/App%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.md)
       - [Android知识点](Android/%E5%AE%89%E5%8D%93%E7%9F%A5%E8%AF%86%E7%82%B9.md)
+      - [adb命令](Android/adb%E5%91%BD%E4%BB%A4.md)
+      - [流畅性分析](Android/%E6%B5%81%E7%95%85%E6%80%A7%E5%88%86%E6%9E%90.md)
     * Spring Boot + Vue
       - [Vue](springboot+vue/Vue项目.md)
     * MySQL
@@ -59,6 +62,7 @@
       - [Linux下安装Java运行环境](Linux/Linux安装Java环境.md)
       - [Linux下部署ssm项目](Linux/Linux部署SSM项目.md)
       - [Linux面试题](Linux/Linux面试题.md)
+      - [Linux命令大全](Linux/Linux%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.md)
     * 并发编程
       - [面试题](Current/面试题.md)
       - [Java线程](Current/Java线程.md)

@@ -2,6 +2,8 @@
 * 我的博客
     * Android
       - [Systrace学习笔记](Android/Systrace%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
+      - [Systrace-流畅性分析](Android/Systrace%E2%80%94%E2%80%94%E6%B5%81%E7%95%85%E6%80%A7%E5%88%86%E6%9E%90.md)
+      - [Systrace-响应速度分析](Android/Systrace%E2%80%94%E2%80%94%E5%93%8D%E5%BA%94%E9%80%9F%E5%BA%A6%E5%88%86%E6%9E%90.md)
       - [Perfetoo使用教程](Android/Perfetoo%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md)
       - [Binder机制](Android/Binder%E6%9C%BA%E5%88%B6.md)
       - [Android消息机制](Android/%E5%AE%89%E5%8D%93%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.md)
@@ -9,7 +11,8 @@
       - [App启动流程](Android/App%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.md)
       - [Android知识点](Android/%E5%AE%89%E5%8D%93%E7%9F%A5%E8%AF%86%E7%82%B9.md)
       - [adb命令](Android/adb%E5%91%BD%E4%BB%A4.md)
-      - [流畅性分析](Android/%E6%B5%81%E7%95%85%E6%80%A7%E5%88%86%E6%9E%90.md)
+      
+
     * Linux
       - [Linux学习笔记](Linux/Linux学习笔记.md)
       - [Linux下安装Java运行环境](Linux/Linux安装Java环境.md)

@@ -143,3 +143,75 @@
       1. 如果是系统原因：看app能否规避，无法处理交给系统处理
       2. 如果是app自身原因：可以使用TraceView、Simple Perf等继续查看更加详细的函数调用信息，也可以使用 TraceFix 插件，插入更多的 TraceTag 之后，重新抓取 Systrace 来对比分析
 
+## App冷启动流程分析
+
+![](../img/OIG57AudX193jD3u.png)
+
+1. 触摸屏中断处理阶段
+
+   点击屏幕会触发若干个中断，这些信号经过处理之后，触摸屏驱动会把这些点更新到 EventHub 中，让 InputReader 和 InputDIspatcher 进行进一步的处理
+
+2. InputReader 和 InputDispatcher 处理 Input 事件阶段
+
+3. Launcher处理  Input 事件 阶段
+
+   Launcher 在收到 up 事件后，会进行逻辑判断，然后启动对应的 App（这里主要是交给 AMS 来处理，又回到了 SystemServer 进程）
+
+4. SystemServer处理 StartActivity 阶段
+
+   1. 处理启动命令：该system_server进程中的binder调用是launcher通过ActivityTaskManager.getService().startActivity 调用过来的
+   2. fork新进程：判断启动的Activity的app进程如果没有启动，需要首先启动进程，然后再启动Activity，这是冷启动与其他启动的区别；
+   3. app进程出现：app进程fork出来后被调用，初始化Message机制，主线程Message机制开始运行
+
+5. app进程启动阶段：
+
+   1. app进程启动到splashActivity第一帧显示
+
+   2. SplashActivity第一帧显示到主Activity第一帧显示
+
+      大部分的 App 都有 SplashActivity 来播放广告，播放完成之后才是真正的主 Activity 的启动
+
+   3. 主Activity第一帧显示到界面完全加载并显示
+
+
+## Systrace中分析Sleep、Running、Runnable状态下的Task
+
+### 1、如何分析Sleep下的Task
+
+Sleep 有两种，即应用主动 Sleep 和被动 Sleep
+
+- nativePoll 这种，一般属于主动 Sleep，因为没有消息处理了，所以进入 Sleep 状态等待 Message，这种一般是正常的
+
+- 被动 Sleep 一般是由**用户主动调用 sleep**，或者 **Binder 与其他进程进行通信**，这个是我们最常见的，也是分析性能问题的时候经常会遇到的，**需要重点关注**
+
+  这种一般可以点击这个 Task 最下面的 binder transaction 来查看 Binder 调用信息，比如
+
+  ![FqqYKpVnNGUuivrq](../img/FqqYKpVnNGUuivrq.png)
+
+  有时候没有 Binder 信息，是被其他的等待的线程唤醒，那么可以查看唤醒信息，也可以找到应用是在等待什么
+
+  ![zPFoHiQJvTWMmUuF](../img/zPFoHiQJvTWMmUuF.png)
+
+
+
+### 2、如何分析Running下的Task
+
+Running 状态的任务就是目前在 CPU 某一个核心上运行的任务，如果某一段任务是 Running 状态，且耗时变长，那么需要分析
+
+1. 是否应用的本身逻辑耗时，比如新增了某些代码逻辑
+
+2. 任务是否跑到了小核上
+
+   ![K49yBsgPUrHkYyw6](../img/K49yBsgPUrHkYyw6.png)
+
+### 3、如何分析Runnable下的Task
+
+一个线程：Sleep->Runnable->Running
+
+​	<img src="../img/图片1.png" alt="img" style="zoom:80%;" />
+
+![GR7crsOwDOy4X8qL](../img/GR7crsOwDOy4X8qL.png)
+
+正常情况下，应用进入 Runnable 状态之后，会马上被调度器调度，进入 Running 状态，开始干活；但是在系统繁忙的时候，应用就会有大量的时间在 Runnable 状态，因为 cpu 已经跑满，各种任务都需要排队等待调度
+
+如果应用启动的时候出现大量的 Runnable 任务，那么需要查看系统的状态

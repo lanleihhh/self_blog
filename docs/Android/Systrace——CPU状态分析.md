@@ -2,7 +2,7 @@
 
 
 
-## CPU运行状态Runnable分析
+## 一、CPU运行状态Runnable分析
 
 ### Runnable状态说明
 
@@ -83,7 +83,7 @@ Linux内核通过赋予不同的线程时间片通过轮转的方式来达到同
 4. CPU损坏
 5. 低端机：CPU算力低
 
-## CPU运行状态Running分析
+## 二、CPU运行状态Running分析
 
 ### Running耗时原因
 
@@ -154,7 +154,7 @@ ARM 处理器在相同频率下不同微架构的配置导致的性能差异是�
 
 
 
-## CPU运行状态Sleep & Uniterruptible Sleep分析
+## 三、CPU运行状态Sleep & Uniterruptible Sleep分析
 
 ### Linux 中的 Sleep 状态是什么
 

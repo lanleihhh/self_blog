@@ -6,11 +6,15 @@
 >1. Python 2.7.x 环境；
 >2. 安卓SDK ： systrace 命令在 Android SDK 工具软件包中提供，并且可以在 android-sdk/platform-tools/systrace/ 中找到(旧版带systrace.py)
 >3. chrome://tracing/  ：浏览器打开systrace.html
+>4. 打开atrace文件：`python systrace.py --from-file xxx.atrace`将atrace转为html（在systrace.py文件目录中进入）
+>5. ![image-20231030102444847](../img/image-20231030102444847.png)
 
 >Systrace 适用于 Android 4.3（API 级别 18）及更高版本的所有平台版本，但建议将 Perfetto 用于运行 Android 10 及更高版本的设备
 
 
+
 ## 1.Systrace快捷键
+
 W：放大
 S：缩小
 A：左移
@@ -19,7 +23,7 @@ M：高亮
 1	：将当前正在使用中的选择模型更改为“选择”模式。
 2	：将当前正在使用中的选择模型更改为“平移”模式。
 3	：将当前正在使用中的选择模型更改为“缩放”模式。 
-4	：将当前正在使用中的选择模型更改为“计时”模式。
+4	：将当前正在使用中的选择模型更改为“计时”模式，选择一个起点, 选择一个终点, 查看起点和终点这中间的操作所花费的时间。
 G	：在当前所选任务的开头显示网格。
 左键：在当前选定的时间轴上选择上一个事件。
 右键：在当前选定的时间轴上选择下一个事件。
@@ -49,21 +53,46 @@ CPU按照核心数和**架构**分类：
 ## 4.图形化
 横坐标是以时间为单位，纵坐标是以进程-线程的方式来划分，同一进程的线程为一组放在一起，可收缩/展开，如下图：
 
-### 4.1 Frames帧
+### 4.1、线程状态信息解析
+
+[![img](../img/15638916860044.jpg)](https://www.androidperformance.com/images/15638916860044.jpg)
+
+### 4.2、函数 Slice 信息解析
+
+[![img](../img/15638916944506.jpg)](https://www.androidperformance.com/images/15638916944506.jpg)
+
+### 4.3、Counter Sample 信息解析
+
+[![img](../img/15638917076247.jpg)](https://www.androidperformance.com/images/15638917076247.jpg)
+
+### 4.4、Async Slice 信息解析
+
+[![img](../img/15638917151530.jpg)](https://www.androidperformance.com/images/15638917151530.jpg)
+
+### 4.5、CPU Slice 信息解析
+
+[![img](../img/15638917222302-169838778460513.jpg)](https://www.androidperformance.com/images/15638917222302.jpg)
+
+### 4.6、User Expectation 信息解析
+
+位于整个 Systrace 最上面的部分,标识了 Rendering Response 和 Input Response
+[![img](../img/15638917348214.jpg)](https://www.androidperformance.com/images/15638917348214.jpg)
+
+### 4.7、 Frames帧
 在每个app进程，都有一个Frames行，正常情况以绿色的圆点表示。当圆点颜色为黄色或者红色时，意味着这一帧超过16.6ms（即发现丢帧），这时需要通过放大这一帧进一步分析问题。
 
 对于Android 5.0(API level 21)或者更高的设备，该问题主要聚焦在UI Thread和Render Thread这两个线程当中。对于更早的版本，则所有工作在UI Thread。
 
 ![在这里插入图片描述](../img/26ec9a82db4a4f348220419464e8eab2.png)
 
-### 4.2 用户活动
+### 4.8 、用户活动
 ![在这里插入图片描述](../img/b349eb8336df42ee9da22ae8a54dcdf5.png)
 
-### 4.3 CPU活动
+### 4.9 、CPU活动
 ![在这里插入图片描述](../img/d53ea3424e8b48ba9879eedd4c5ed12d.png)
 
 
-### 4.4 系统事件
+### 4.10、系统事件
 描绘 SurfaceFlinger 进程（包括 VSync 事件和界面线程交换工作）的其他直方图
 ![在这里插入图片描述](../img/892300a40a4943338575226dd95e51e1.png)
 

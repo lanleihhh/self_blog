@@ -1,4 +1,14 @@
-# Perfetoo UI
+# Perfetoo 教程
+
+> 导入文件
+>
+> 1.导入systrace.html
+>
+> 2.导入atrace `python systrace.py --from-file xxx.atrace`将atrace转为html（在systrace.py文件目录中进入）
+>
+> ![image-20231030102444847](../img/image-20231030102444847.png)
+>
+> 3.导入atrace：使用BandZip解压atrace
 
 ## 1、如何查看唤醒线程端：
 

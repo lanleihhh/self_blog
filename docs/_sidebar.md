@@ -10,8 +10,10 @@
       - [Android消息机制](Android/%E5%AE%89%E5%8D%93%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6.md)
       - [Android渲染机制](Android/%E5%AE%89%E5%8D%93%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6.md)
       - [App启动流程](Android/App%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.md)
+      - [App系统启动流程](Android/Android%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.md)
       - [Android知识点](Android/%E5%AE%89%E5%8D%93%E7%9F%A5%E8%AF%86%E7%82%B9.md)
       - [adb命令](Android/adb%E5%91%BD%E4%BB%A4.md)
+      - [Dalvik 虚拟机参数优化——Heap](Android/Dalvik%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96.md)
     * Linux
       - [Linux学习笔记](Linux/Linux学习笔记.md)
       - [Linux下安装Java运行环境](Linux/Linux安装Java环境.md)

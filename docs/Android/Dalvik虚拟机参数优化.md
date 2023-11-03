@@ -1,4 +1,4 @@
-# Dalvik 虚拟机参数优化【Heap】
+# Dalvik 虚拟机参数调优【Heap】
 
 >Android设备出厂以后，虚拟机对单个应用的最大内存分配就确定下来了，超出这个值就会OOM。这个属性值是定义在/system/build.prop文件中的；
 

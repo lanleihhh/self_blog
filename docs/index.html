@@ -61,6 +61,52 @@
       language:'chinese'
     },
 
+    markdown: {
+        renderer: {
+          code: function(code, lang, base=null) {
+
+            /* if (lang === "dot") {
+              return (
+                      '<div class="viz">'+ Viz(code, "SVG")+'</div>'
+              );
+            } */
+
+            var pdf_renderer = function(code, lang, verify) {
+              function unique_id_generator(){
+                function rand_gen(){
+                  return Math.floor((Math.random()+1) * 65536).toString(16).substring(1);
+                }
+                return rand_gen() + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + '-' + rand_gen() + rand_gen() + rand_gen();
+              }
+              if(lang && !lang.localeCompare('pdf', 'en', {sensitivity: 'base'})){
+                if(verify){
+                  return true;
+                }else{
+                  var divId = "markdown_code_pdf_container_" + unique_id_generator().toString();
+                  var container_list = new Array();
+                  if(localStorage.getItem('pdf_container_list')){
+                    container_list = JSON.parse(localStorage.getItem('pdf_container_list'));
+                  }
+                  container_list.push({"pdf_location": code, "div_id": divId});
+                  localStorage.setItem('pdf_container_list', JSON.stringify(container_list));
+                  return (
+                          '<div style="margin-top:'+ PDF_MARGIN_TOP +'; margin-bottom:'+ PDF_MARGIN_BOTTOM +';" id="'+ divId +'">'
+                          + '<a href="'+ code + '"> Link </a> to ' + code +
+                          '</div>'
+                  );
+                }
+              }
+              return false;
+            }
+            if(pdf_renderer(code, lang, true)){
+              return pdf_renderer(code, lang, false);
+            }
+            //return this.origin.code.apply(this, arguments);
+            return (base ? base : this.origin.code.apply(this, arguments));
+          }
+        }
+      }
+    }
     // 折叠目录
     plugins: [
       function(hook, vm) {
@@ -90,8 +136,7 @@
         });
       }
     ]
-
-  }
+  
 
   // 使用离线功能
   if (typeof navigator.serviceWorker !== 'undefined') {
@@ -113,9 +158,13 @@
 <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-java.min.js"></script>
 
+<!-- mouse click -->
+<script src="//cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script>
+
 <!-- 评论插件Gitalk -->
 <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
 <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
 <script>
   var gitalk = new Gitalk({
     clientID: '778ecef89330e5ad80c5', // GitHub Application Client ID
@@ -126,6 +175,7 @@
     title: location.hash.match(/#(.*?)([?]|$)/)[1],
     id: location.pathname,      // 用于标记评论是哪个页面的，确保唯一，并且长度小于50
   })
+
   window.onhashchange = function(event){
       if(event.newURL.split('?')[0] !== event.oldURL .split('?')[0]) {
         location.reload()
@@ -134,6 +184,55 @@
   gitalk.render('gitalk-container');    // 渲染Gitalk评论组件
   decodeURI(title)
 </script>
+
+<!-- PDFObject.js is a required dependency of this plugin -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script> 
+<!-- This is the source code of the pdf embed plugin -->
+<script src="path-to-file/docsify-pdf-embed.js"></script>
+<!-- or use this if you are not hosting the file yourself -->
+<script src="//unpkg.com/docsify-pdf-embed-plugin/src/docsify-pdf-embed.js"></script>
+
+<!-- 访问量统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 运行时间统计 -->
+<script language=javascript>
+  function siteTime() {
+    window.setTimeout("siteTime()", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth() + 1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+    year - 作为date对象的年份，为4位年份值
+    month - 0-11之间的整数，做为date对象的月份
+    day - 1-31之间的整数，做为date对象的天数
+    hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+    minutes - 0-59之间的整数，做为date对象的分钟数
+    seconds - 0-59之间的整数，做为date对象的秒数
+    microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+    var t1 = Date.UTC(2020, 02, 10, 00, 00, 00); //北京时间2020-02-10 00:00:00
+    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+    var diff = t2 - t1;
+    var diffYears = Math.floor(diff / years);
+    var diffDays = Math.floor((diff / days) - diffYears * 365);
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+    document.getElementById("sitetime").innerHTML = " 本网站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒 ";
+  }
+  siteTime();
+</script>
+
+
 
 </body>
 
